@@ -1,14 +1,19 @@
 package RPG_project.hero;
 //Hero 부모 클래스
+import java.util.Scanner;
 import java.util.Random;
 
+
 public class Hero {
+    static Scanner input = new Scanner(System.in); // Scanner 객체 생성
+    static Hero jobType;
     static String name, groupName, rank;
     static int hp, fullHp, mp, fullMp, att, def, money, bullyTired, trust;
 
+    static Hero[] jobArray = new Hero[0];
     //static Item[] inventory = new Item[0];
 
-    public void show_status() {
+    public void showStatus() {
         System.out.println("------------------");
         System.out.println(name + ", " + groupName + " 소속");
         System.out.println("hp: " + hp + "/" + fullHp);
@@ -42,6 +47,12 @@ public class Hero {
 
     public void levelUP() {
 
+    }
+
+    public void jobChoice() {
+        System.out.printf("직업을 선택하세요\n1.정육점사장 2.영업사원 3.삼류배우\n");
+        int n = input.nextInt();
+        jobType = jobArray[n];
     }
 
     //스킬, 직장업무, 이벤트는 상속에서 처리
