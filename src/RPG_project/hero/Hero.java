@@ -10,7 +10,7 @@ public class Hero {
     static String name, groupName, rank;
     static int hp, fullHp, mp, fullMp, att, def, money, bullyTired, trust;
 
-    static Hero[] jobArray = new Hero[0];
+    static Hero[] jobArray = new Hero[0];//객체 생성할 때 append
     //static Item[] inventory = new Item[0];
 
     public void showStatus() {
@@ -40,7 +40,6 @@ public class Hero {
         //자식 클래스에서 오버라이딩
         return 0;
     }
-
     public void useItem() {
 
     }
@@ -50,7 +49,7 @@ public class Hero {
     }
 
     public void jobChoice() {
-        System.out.printf("직업을 선택하세요\n1.정육점사장 2.영업사원 3.삼류배우\n");
+        System.out.print("직업을 선택하세요\n1.정육점사장 2.영업사원 3.삼류배우\n");
         int n = input.nextInt();
         jobType = jobArray[n];
     }
