@@ -1,4 +1,4 @@
-package RPG_project.place;
+package RPG_project.item;
 //Item 클래스
 public class Item {
 }
