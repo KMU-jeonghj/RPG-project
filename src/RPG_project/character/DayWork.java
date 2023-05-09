@@ -1,4 +1,4 @@
-package RPG_project.hero;
+package RPG_project.character;
 
 public class DayWork {
 
