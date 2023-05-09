@@ -1,7 +1,6 @@
-package RPG_project.hero;
+package RPG_project.character;
 //Hero 부모 클래스
 import java.util.Scanner;
-import java.util.Random;
 
 
 public class Hero {
@@ -13,7 +12,13 @@ public class Hero {
     private Job jobType;
     Job[] jobArr;
 
-    void butItem() {
+    public Hero(String name) {
+        this.name = name;
+        fullHp = hp = 100;
+        money = 0;
+    }
+
+    void buyItem() {
 
     }
 
