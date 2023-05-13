@@ -15,25 +15,28 @@ public class Salary extends Job{
     public void makePaper(Hero hero) {
         System.out.println("\n서류를 작성합니다\n");//피로도에 따라 다른 메세지 출력 기능도 생각해보기
 
-        int result = (int) (70 * hero.getTired());
-        int wage = (int) (5000 * hero.getTired());
+        int result = (int) (70 * hero.getTiredness());
+        int wage = (int) (5000 * hero.getTiredness());
         System.out.printf("\n업무 완료\n 서류가방 무게 : %d(+%d)\n 월급 : %d(+%d)\n", casePower, result, hero.getMoney(), wage);
-        casePower += result;
-        hero.gainMoney(wage);
+        casePower += result; //업무능력치 상승
+        hero.gainMoney(wage); // 월급
+        hero.loseHp(10); //피로도 상승
     }
     public void meetClient(Hero hero) {
         System.out.println("\n고객을 응대하고 있습니다.\n");
-        int result = (int) (120 * hero.getTired());
-        int wage = (int) (3000 * hero.getTired());
+        int result = (int) (120 * hero.getTiredness());
+        int wage = (int) (3000 * hero.getTiredness());
         System.out.printf("\n업무 완료\n 영업능력 : %d(+%d)\n 월급 : %d(+%d)\n", salesPower, result, hero.getMoney(), wage);
         salesPower += result;
         hero.gainMoney(wage);
+        hero.loseHp(25);
     }
     public void exercise(Hero hero) {
         System.out.println("\n오늘은 하체!\n"); //랜덤 출력 기능?
-        int result = (int) (100 * hero.getTired());
+        int result = (int) (100 * hero.getTiredness());
         System.out.printf("\n업무 완료\n 영업능력 : %d(+%d)\n", normalPower, result);
         normalPower += result;
+        hero.loseHp(15);
     }
 
     @Override

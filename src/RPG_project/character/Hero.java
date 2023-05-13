@@ -42,6 +42,10 @@ public class Hero {
         this.hp -= hp;
     }
 
+    public void zeroHp() { //hp를 0으로 만드는 메소드
+        this.hp = 0;
+    }
+
     public void gainMoney(int money) {
         this.money += money;
     }
@@ -50,17 +54,10 @@ public class Hero {
         this.money -= money;
     }
 
-    public double getTired() {
-        double rate = hp / fullHp;
-        if (rate == 0) return -1;
-        else return rate;
+    public double getTiredness() { //피로도를 현재 hp의 비율로 표현
+        if (this.hp == 0) return 0;
+        else return hp / fullHp;
     }
 
-
-
-
-
-
-    //스킬, 직장업무, 이벤트는 상속에서 처리
 
 }
