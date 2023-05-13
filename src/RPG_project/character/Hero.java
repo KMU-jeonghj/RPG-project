@@ -14,12 +14,46 @@ public class Hero {
 
     public Hero(String name) {
         this.name = name;
-        fullHp = hp = 100;
-        money = 0;
+        this.fullHp = this.hp = 100;
+        this.money = 0;
     }
 
-    void buyItem() {
+    public String getName() {
+        return name;
+    }
 
+    public int getFullHp() {
+        return fullHp;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void gainHp(int hp) {
+        this.hp += hp;
+    }
+
+    public void loseHp(int hp) {
+        this.hp -= hp;
+    }
+
+    public void gainMoney(int money) {
+        this.money += money;
+    }
+
+    public void loseMoney(int money) {
+        this.money -= money;
+    }
+
+    public double getTired() {
+        double rate = hp / fullHp;
+        if (rate == 0) return -1;
+        else return rate;
     }
 
 

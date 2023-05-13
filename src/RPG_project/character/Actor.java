@@ -4,12 +4,12 @@ public class Actor extends Job{
 
 
     @Override
-    public void work() {
+    public void work(Hero hero) {
 
     }
 
     @Override
-    public void skill() {
-
+    public int skill() {
+        return 0;
     }
 }

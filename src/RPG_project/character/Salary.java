@@ -1,15 +1,59 @@
 package RPG_project.character;
 
 public class Salary extends Job{
+    private int casePower;
+    private int salesPower;
 
+    public Salary() {
+        super();
+        this.jobName = "영업사원";
+        //this.jobYear = 1;
+        this.normalPower = 10;
+        this.casePower = 5;
+        this.salesPower = 5;
+    }
+    public void makePaper(Hero hero) {
+        System.out.println("\n서류를 작성합니다\n");//피로도에 따라 다른 메세지 출력 기능도 생각해보기
 
-    @Override
-    public void work() {
-
+        int result = (int) (70 * hero.getTired());
+        int wage = (int) (5000 * hero.getTired());
+        System.out.printf("\n업무 완료\n 서류가방 무게 : %d(+%d)\n 월급 : %d(+%d)\n", casePower, result, hero.getMoney(), wage);
+        casePower += result;
+        hero.gainMoney(wage);
+    }
+    public void meetClient(Hero hero) {
+        System.out.println("\n고객을 응대하고 있습니다.\n");
+        int result = (int) (120 * hero.getTired());
+        int wage = (int) (3000 * hero.getTired());
+        System.out.printf("\n업무 완료\n 영업능력 : %d(+%d)\n 월급 : %d(+%d)\n", salesPower, result, hero.getMoney(), wage);
+        salesPower += result;
+        hero.gainMoney(wage);
+    }
+    public void exercise(Hero hero) {
+        System.out.println("\n오늘은 하체!\n"); //랜덤 출력 기능?
+        int result = (int) (100 * hero.getTired());
+        System.out.printf("\n업무 완료\n 영업능력 : %d(+%d)\n", normalPower, result);
+        normalPower += result;
     }
 
     @Override
-    public void skill() {
+    public void work(Hero hero) {
+        System.out.println("\n업무를 선택하세요\n");
+        System.out.println("\t1. 서류작성 - (서류가방 무게 ↑ , 돈 ↑)");
+        System.out.println("\t2. 영업현장 나가기 - (영업능력 ↑ , 돈 ↑)");
+        System.out.println("\t3. 몰래 운동하기 - (공격력 ↑)\n");
+        String num = input.next();
+        switch (num) {
+            case "1" -> makePaper(hero);
+            case "2" -> meetClient(hero);
+            case "3" -> exercise(hero);
+            default -> System.out.println("올바른 값을 입력해 주세요.");
+        }
+    }
+
+    @Override
+    public int skill() {
+        return 0;
 
     }
 }
