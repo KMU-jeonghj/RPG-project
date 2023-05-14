@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 
 public class Hero {
+
+
+    //필드 멤버
+    //--------------------------------------------------------------
     public Scanner input = new Scanner(System.in); // Scanner 객체 생성
 
     private String name;
@@ -11,13 +15,57 @@ public class Hero {
 
     private Job jobType;
     Job[] jobArr;
+//--------------------------------------------------------
 
+
+    //생성자
     public Hero(String name) {
         this.name = name;
         this.fullHp = this.hp = 100;
         this.money = 0;
     }
 
+
+
+    //설정자
+    //-------------------------------------------------------------------------
+    public void setFullHp(int fullHp) {
+        this.fullHp = fullHp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public void gainHp(int hp) {
+        this.hp += hp;
+    }
+
+    public void loseHp(int hp) {
+        this.hp -= hp;
+    }
+
+    public void zeroHp() { //hp를 0으로 만드는 메소드
+        this.hp = 0;
+    } // hp 0으로 전환
+
+    public void gainMoney(int money) {
+        this.money += money;
+    }
+
+    public void loseMoney(int money) {
+        this.money -= money;
+    }
+
+    //------------------------------------------------------------------
+
+
+    //접근자
+    //---------------------------------------------------------------------
     public String getName() {
         return name;
     }
@@ -34,29 +82,19 @@ public class Hero {
         return money;
     }
 
-    public void gainHp(int hp) {
-        this.hp += hp;
+    public Job getJobType() {
+        return jobType;
     }
+    //-----------------------------------------------------------------------
 
-    public void loseHp(int hp) {
-        this.hp -= hp;
-    }
 
-    public void zeroHp() { //hp를 0으로 만드는 메소드
-        this.hp = 0;
-    }
-
-    public void gainMoney(int money) {
-        this.money += money;
-    }
-
-    public void loseMoney(int money) {
-        this.money -= money;
-    }
-
-    public double getTiredness() { //피로도를 현재 hp의 비율로 표현
+    public double getTiredrate() { //피로도를 현재 hp의 비율로 표현
         if (this.hp == 0) return 0;
         else return hp / fullHp;
+    }
+
+    public boolean isFainted() {
+        return (this.hp == 0);
     }
 
 
