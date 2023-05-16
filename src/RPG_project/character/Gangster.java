@@ -75,13 +75,16 @@ public class Gangster {
         return (this.gangCnt == 0);
     }
 
-    public int attack() { //NightGang에서 오버라이딩 (스킬 추가)
+    public int attack(Hero hero) { //NightGang에서 오버라이딩 (스킬 추가)
         int damage = (int)(power * getGangRate());
         return damage;
     }
 
-    public void attacked(Gangster gang) {
-        int damage = gang.attack() - (int)(def * getGangRate());
+    public void attacked(Gangster gang, Hero hero) {
+        int damage;
+        if (gang.attack(hero) < (int)(def * getGangRate())) damage = 0; //방어력이 상대 공격보다 클때 미스처리
+        else
+            damage = gang.attack(hero) - (int)(def * getGangRate());
         gangCnt -= damage;
         if (gangCnt < 0) gangCnt = 0;
     }
