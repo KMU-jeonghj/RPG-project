@@ -6,11 +6,11 @@ public class Enemy extends Gangster{
 
     protected int credReward; //자식 클래스가 접근 가능하도록 protected 지정
 
-    public Enemy(String name) {
+    public Enemy(String name, int gangCnt, int power, int def) {
         super(name);
-        this.gangCnt = this.fullGangCnt = 50;
-        this.power = 20;
-        this.def = 20;
+        this.gangCnt = this.fullGangCnt = gangCnt;
+        this.power = power;
+        this.def = def;
     }
 
     public void setCredReward(int credReward) {

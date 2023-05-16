@@ -82,9 +82,11 @@ public class Gangster {
 
     public void attacked(Gangster gang, Hero hero) {
         int damage;
+        double rateGap = getGangRate() - gang.getGangRate();
         if (gang.attack(hero) < (int)(def * getGangRate())) damage = 0; //방어력이 상대 공격보다 클때 미스처리
+        else if (rateGap >= 0.5) damage = 1;
         else
-            damage = gang.attack(hero) - (int)(def * getGangRate());
+            damage = gang.attack(hero) - (int)(4/5 * def * getGangRate());
         gangCnt -= damage;
         if (gangCnt < 0) gangCnt = 0;
     }
