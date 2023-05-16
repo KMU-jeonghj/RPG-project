@@ -13,11 +13,11 @@ public class NightGang extends Gangster{
     //------------------------------------------------------------------
 
     //생성자
-    public NightGang(String name) { //mp 기능 만들어야 하나?
+    public NightGang(String name, int gangCnt, int power, int def) { //mp 기능 만들어야 하나?
         super(name);
-        this.gangCnt = this.fullGangCnt = 50;
-        this.power = 30;
-        this.def = 30;
+        this.gangCnt = this.fullGangCnt = gangCnt;
+        this.power = power;
+        this.def = def;
     }
     //------------------------------------------------------------
 
