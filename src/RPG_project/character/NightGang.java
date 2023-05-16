@@ -13,11 +13,11 @@ public class NightGang extends Gangster{
     //------------------------------------------------------------------
 
     //생성자
-    public NightGang(String name) {
+    public NightGang(String name) { //mp 기능 만들어야 하나?
         super(name);
-        this.gangCnt = this.fullGangCnt = 30;
-        this.power = 50;
-        this.def = 50;
+        this.gangCnt = this.fullGangCnt = 50;
+        this.power = 30;
+        this.def = 30;
     }
     //------------------------------------------------------------
 
@@ -59,9 +59,8 @@ public class NightGang extends Gangster{
         return s;
     }
 
-
-    public int attackNG(Hero hero) {
-        int s = getSkill(hero);
+    @Override
+    public int attack(Hero hero) {
         int damage = (int)(power * getGangRate());
         return damage;
     }

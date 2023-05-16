@@ -8,6 +8,9 @@ public class Enemy extends Gangster{
 
     public Enemy(String name) {
         super(name);
+        this.gangCnt = this.fullGangCnt = 50;
+        this.power = 20;
+        this.def = 20;
     }
 
     public void setCredReward(int credReward) {
