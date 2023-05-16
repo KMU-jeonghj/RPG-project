@@ -12,5 +12,10 @@ public abstract class Job {
 
     public abstract int skill();
 
+    public int normalAttack() {
+        int mul = 1;
+        return mul * normalPower;
+    }
+
 
 }

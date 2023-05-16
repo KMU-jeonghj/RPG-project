@@ -44,12 +44,14 @@ public class Salary extends Job{
 
     //------------------------------------------------------
 
+    //업무 메소드
     public void makePaper(Hero hero) {
         System.out.println("\n서류를 작성합니다\n");//피로도에 따라 다른 메세지 출력 기능도 생각해보기
 
         int result = (int) (70 * hero.getTiredrate());
         int wage = (int) (5000 * hero.getTiredrate());
-        System.out.printf("\n업무 완료\n 서류가방 무게 : %d(+%d)\n 월급 : %d(+%d)\n", casePower, result, hero.getMoney(), wage);
+        System.out.printf("\n업무 완료\n 서류가방 무게 : %d(+%d)\n 월급 : %d(+%d)\n",
+                casePower, result, hero.getMoney(), wage);
         casePower += result; //업무능력치 상승
         hero.gainMoney(wage); // 월급
         hero.loseHp(10); //피로도 상승
@@ -58,7 +60,8 @@ public class Salary extends Job{
         System.out.println("\n거래처 직원을 설득하고 있습니다.\n");
         int result = (int) (120 * hero.getTiredrate());
         int wage = (int) (3000 * hero.getTiredrate());
-        System.out.printf("\n업무 완료\n 영업능력 : %d(+%d)\n 월급 : %d(+%d)\n", salesPower, result, hero.getMoney(), wage);
+        System.out.printf("\n업무 완료\n 영업능력 : %d(+%d)\n 월급 : %d(+%d)\n",
+                salesPower, result, hero.getMoney(), wage);
         salesPower += result;
         hero.gainMoney(wage);
         hero.loseHp(25);
@@ -77,18 +80,46 @@ public class Salary extends Job{
         System.out.println("\t1. 서류작성 - (서류가방 무게 ↑ , 돈 ↑)");
         System.out.println("\t2. 영업현장 나가기 - (영업능력 ↑ , 돈 ↑)");
         System.out.println("\t3. 몰래 운동하기 - (공격력 ↑)\n");
-        String num = input.next();
+
+        String num = input.next(); //숫자가 아니라 문자열을 입력하는 경우 고려
         switch (num) {
             case "1" -> makePaper(hero);
             case "2" -> meetClient(hero);
             case "3" -> exercise(hero);
-            default -> System.out.println("올바른 값을 입력해 주세요.");
+            default -> {
+                System.out.println("올바른 값을 입력해 주세요.");
+                work(hero);//재귀 사용
+            }
         }
+    }
+
+    //스킬 메소드
+    public int edgeAttack() {
+        int mul = 1;
+        return mul * casePower;
+    }
+
+    public int persuade() {
+        return 0;
     }
 
     @Override
     public int skill() {
-        return 0;
+        System.out.println("\n스킬 선택\n");
+        System.out.println("\t1. 기본공격");
+        System.out.println("\t2. 서류가방 모서리 공격");
+        System.out.println("\t3. 회유하기\n");
 
+        String skillNum = input.next();
+        int skillDamage = switch (skillNum) {
+            case "1" -> normalAttack();
+            case "2" -> edgeAttack();
+            case "3" -> persuade();
+            default -> {
+                System.out.println("올바른 값을 입력해 주세요");
+                yield skill(); //재귀
+            }
+        };
+        return skillDamage;
     }
 }

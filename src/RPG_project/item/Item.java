@@ -1,8 +1,8 @@
 package RPG_project.item;
 //Item 클래스
 public class Item {
-    private String name;
-    private int hp, def, price, cnt;
+    protected String name;
+    protected int hp, def, price, cnt;
 
     public Item(String name, int hp, int def, int price) {
         this.name = name;

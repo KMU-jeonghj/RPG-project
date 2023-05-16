@@ -93,7 +93,7 @@ public class Hero {
         else return hp / fullHp;
     }
 
-    public boolean isFainted() {
+    public boolean isZeroHp() {
         return (this.hp == 0);
     }
 
