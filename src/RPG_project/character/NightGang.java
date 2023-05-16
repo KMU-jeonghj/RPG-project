@@ -55,8 +55,15 @@ public class NightGang extends Gangster{
     //-----------------------------------------------------------
 
     public int getSkill(Hero hero) {
-        int skillSum = hero.getJobType().skill();
-        return skillSum;
+        int s = hero.getJobType().skill();
+        return s;
+    }
+
+
+    public int attackNG(Hero hero) {
+        int s = getSkill(hero);
+        int damage = (int)(power * getGangRate());
+        return damage;
     }
 
 }

@@ -4,7 +4,7 @@ public class Gangster {
 
     //필드멤버
     //------------------------------------------
-    protected String name;
+    protected String name; //자식 클래스가 접근 가능하도록 protected 지정
 
     protected int gangCnt, fullGangCnt, power, def;
 
@@ -20,6 +20,14 @@ public class Gangster {
 
     public void setGangCnt(int gangCnt) {
         this.gangCnt = gangCnt;
+    }
+
+    public void loseGangCnt(int gangCnt) {
+        this.gangCnt -= gangCnt;
+    }
+
+    public void gainGangCnt(int gangCnt) {
+        this.gangCnt += gangCnt;
     }
 
     public void setFullGangCnt(int fullGangCnt) {
@@ -59,21 +67,21 @@ public class Gangster {
     }
     //----------------------------------------
 
-    public double getGangrate() {
+    public double getGangRate() {
         return  (gangCnt/fullGangCnt);
     }
 
-    public boolean isDown() {
+    public boolean isZeroGang() {
         return (this.gangCnt == 0);
     }
 
-    public int attack() {
-        int damage = (int)(power * getGangrate());
+    public int attack() { //NightGang에서 오버라이딩 (스킬 추가)
+        int damage = (int)(power * getGangRate());
         return damage;
     }
 
     public void attacked(Gangster gang) {
-        int damage = gang.attack() - (int)(def * getGangrate());
+        int damage = gang.attack() - (int)(def * getGangRate());
         gangCnt -= damage;
         if (gangCnt < 0) gangCnt = 0;
     }

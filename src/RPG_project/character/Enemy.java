@@ -4,7 +4,7 @@ package RPG_project.character;
 
 public class Enemy extends Gangster{
 
-    protected int credReward;
+    protected int credReward; //자식 클래스가 접근 가능하도록 protected 지정
 
     public Enemy(String name) {
         super(name);
@@ -20,5 +20,5 @@ public class Enemy extends Gangster{
 
     public int enemySkill() {
         return 0;
-    }
+    }// 자식클래스에서 오버라이딩
 }
