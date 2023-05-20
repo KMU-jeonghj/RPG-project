@@ -1,6 +1,10 @@
 package RPG_project.character;
 
+import java.util.Random;
+
 public class NightGang extends Gangster{
+    Random rand = new Random();
+    private double heroAttacked = 0.3;
 
     //필드멤버
     //-----------------------------------------------------------------
@@ -60,9 +64,41 @@ public class NightGang extends Gangster{
     }
 
     @Override
-    public int attack(Hero hero) {
-        int damage = (int)(power * getGangRate());
+    public double attack(Hero hero) {
+        int skill = hero.getJobType().skill();
+        double damage = (int)(power * getGangRate());
         return damage;
+
     }
 
+    @Override
+    public void attacked(Gangster gang, Hero hero) {
+        double damage;
+        double given = gang.attack(hero);
+        System.out.printf("보낸 데미지 %.1f\n", given);
+        System.out.printf("방어 %.1f\n", (weight * def * getGangRate()));
+        damage = given - (weight * def * getGangRate());
+
+        if (damage <= 0)  {
+            damage = 0;
+            System.out.println("MISS!");
+        }
+
+        //debug
+        System.out.printf("받은 데미지 %.1f\n" ,damage);
+        gangCnt -= damage;
+        if (gangCnt < 0) gangCnt = 0;
+        gangCnt = (int)gangCnt;
+
+        //일정확률로 hero Hp 차감 damage/fullGangCnt 비율만큼
+        double randNum = rand.nextDouble();
+        if (randNum < heroAttacked) {
+            System.out.printf("%s 가 공격받았다!\n", hero.getName());
+
+            double heroDamage = ((double)damage/fullGangCnt) * 100;
+            hero.loseHp((int)heroDamage);
+            System.out.printf("받은 데미지 %.1f\n", heroDamage);
+        }
+
+    }
 }

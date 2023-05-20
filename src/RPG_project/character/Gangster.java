@@ -8,6 +8,7 @@ public class Gangster {
 
     protected int gangCnt, fullGangCnt, power, def;
 
+    protected double weight = (double)4/5;
     //생성자
     //-------------------------------------
     public Gangster(String name) {
@@ -44,7 +45,7 @@ public class Gangster {
     //----------------------------------------
 
     //접근자
-    //--------------------------------------
+    //----------------------------------------
 
     public String getName() {
         return name;
@@ -65,29 +66,38 @@ public class Gangster {
     public int getDef() {
         return def;
     }
-    //----------------------------------------
+    //-------------------------------------------
 
     public double getGangRate() {
-        return  (gangCnt/fullGangCnt);
+        return  ((double)gangCnt/fullGangCnt);
     }
 
     public boolean isZeroGang() {
         return (this.gangCnt == 0);
     }
 
-    public int attack(Hero hero) { //NightGang에서 오버라이딩 (스킬 추가)
-        int damage = (int)(power * getGangRate());
+    public double attack(Hero hero) { //NightGang에서 오버라이딩 (스킬 추가)
+
+        double damage = (this.power * getGangRate());
         return damage;
     }
 
     public void attacked(Gangster gang, Hero hero) {
-        int damage;
-        double rateGap = getGangRate() - gang.getGangRate();
-        if (gang.attack(hero) < (int)(def * getGangRate())) damage = 0; //방어력이 상대 공격보다 클때 미스처리
-        else if (rateGap >= 0.5) damage = 1;
-        else
-            damage = gang.attack(hero) - (int)(4/5 * def * getGangRate());
+        double damage;
+        double given = gang.attack(hero);
+        System.out.printf("보낸 데미지 %.1f\n", given);
+        System.out.printf("방어 %.1f\n", (weight * def * getGangRate()));
+        damage = given - (weight * def * getGangRate());
+
+        if (damage <= 0)  {
+            damage = 0;
+            System.out.println("MISS!");
+        }
+
+        //debug
+        System.out.printf("받은 데미지 %.1f\n" ,damage);
         gangCnt -= damage;
         if (gangCnt < 0) gangCnt = 0;
+        gangCnt = (int)gangCnt;
     }
 }
