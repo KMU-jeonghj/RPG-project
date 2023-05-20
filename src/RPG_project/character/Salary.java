@@ -122,4 +122,6 @@ public class Salary extends Job{
         };
         return skillDamage;
     }
+
+    //스킬 레벨업
 }

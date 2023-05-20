@@ -61,6 +61,10 @@ public class Hero {
         this.money -= money;
     }
 
+    public void setJobType(Job jobType) {
+        this.jobType = jobType;
+    }
+
     //------------------------------------------------------------------
 
 
@@ -90,7 +94,7 @@ public class Hero {
 
     public double getTiredrate() { //피로도를 현재 hp의 비율로 표현
         if (this.hp == 0) return 0;
-        else return hp / fullHp;
+        else return (double) hp / fullHp;
     }
 
     public boolean isZeroHp() {
