@@ -14,7 +14,7 @@ public class Salary extends Job{
         super();
         this.jobName = "영업사원";
         //this.jobYear = 1;
-        this.normalPower = 10;
+        this.mp = 10;
         this.casePower = 5;
         this.salesPower = 5;
     }
@@ -69,8 +69,8 @@ public class Salary extends Job{
     public void exercise(Hero hero) {
         System.out.println("\n오늘은 하체!\n"); //랜덤 출력 기능?
         int result = (int) (100 * hero.getTiredrate());
-        System.out.printf("\n업무 완료\n 영업능력 : %d(+%d)\n", normalPower, result);
-        normalPower += result;
+        System.out.printf("\n업무 완료\n 영업능력 : %d(+%d)\n", mp, result);
+        mp += result;
         hero.loseHp(15);
     }
 
