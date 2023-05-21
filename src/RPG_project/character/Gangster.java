@@ -25,10 +25,12 @@ public class Gangster {
 
     public void loseGangCnt(int gangCnt) {
         this.gangCnt -= gangCnt;
+        if (this.gangCnt < 0) this.gangCnt = 0;
     }
 
     public void gainGangCnt(int gangCnt) {
         this.gangCnt += gangCnt;
+        if (this.gangCnt > this.fullGangCnt) this.gangCnt = this.fullGangCnt;
     }
 
     public void setFullGangCnt(int fullGangCnt) {
