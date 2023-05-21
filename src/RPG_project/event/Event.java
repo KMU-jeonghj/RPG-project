@@ -5,11 +5,21 @@ import RPG_project.character.*; //다른 패키지이므로 import
 
 import javax.sound.sampled.LineUnavailableException;
 
+/*
+접근자 { getMoney(), getGangCnt() 등}
+설정자 { setHp(int hp), gainHp(int hp), loseMoney(int money) 등}
+을 이용한 멤버 접근 바랍니다.
+
+각 클래스에 표기해놓았으니 다양한 기능이 있는 설정자들을 활용해주시기바랍니다.
+(ex: gain, lose, zero, fill 등)
+ */
 
 public class Event {
     Scanner input = new Scanner(System.in); //스캐너 객체 생성
     private Beep wedRose = new Beep(); // Beep 객체 생성
 
+
+    //다른 클래스(Hero, Gangster)에 '접근'하기 위해 객체를 매개변수로 넣어준다.↓
     public void switchEvent(int year, Hero hero, Gangster gangster) throws LineUnavailableException, InterruptedException
     {
         switch(year) {
@@ -51,7 +61,7 @@ public class Event {
 
         if (event90 == 1){
             //설정자 loseGangCnt 와 접근자 getGangCnt 사용
-            gangster.loseGangCnt((int)(gangster.getGangCnt() * 0.3));
+            gangster.loseGangCnt((int)(gangster.getGangCnt() * 0.3));//접근자와 설정자로 캡슐화된 멤버를 조작한다.
             System.out.println("무리한 활동으로 인해 조직원의 30%가 수감되었습니다.");
             Thread.sleep(100);
             System.out.println("현재 나의 조직원 수 :" + gangster.getGangCnt() + "명");
@@ -140,6 +150,5 @@ public class Event {
 
         int choice08 = input.nextInt();
         System.out.println("2008년 한 해동안 당신은 파트너와 끈끈한 우정을 쌓으며 깡패 커리어를 써나갑니다.");
-
     }
 }

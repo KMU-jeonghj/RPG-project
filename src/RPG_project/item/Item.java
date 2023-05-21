@@ -12,6 +12,19 @@ public class Item {
         cnt = 0;
     }
 
+    public void setCnt(int cnt) {
+        this.cnt = cnt;
+    }
+
+    public void gainCnt(int cnt) {
+        this.cnt += cnt;
+    }
+
+    public void loseCnt(int cnt) {
+        this.cnt -= cnt;
+        if (cnt < 0) this.cnt = 0;
+    }
+
     public String getName() {
         return name;
     }

@@ -33,6 +33,10 @@ public class Gangster {
         if (this.gangCnt > this.fullGangCnt) this.gangCnt = this.fullGangCnt;
     }
 
+    public void fillGangCnt() {
+        this.gangCnt = this.fullGangCnt;
+    }
+
     public void setFullGangCnt(int fullGangCnt) {
         this.fullGangCnt = fullGangCnt;
     }

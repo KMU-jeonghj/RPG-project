@@ -1,6 +1,7 @@
 package RPG_project.test;
 
 import RPG_project.character.*;
+import RPG_project.item.Inventory;
 
 import java.util.Scanner;
 
@@ -19,10 +20,11 @@ public class BattleTest {
         Salary salary = new Salary();
         NightGang ng = new NightGang("nightGang", 50, 30, 30);
         Status stat = new Status();
+        Inventory inven = new Inventory();
 
-        hero.setJobType(salary);
+        hero.setJobNow(salary);
 
-        stage.battle(hero, e1, ng, stat);
+        stage.battle(hero, e1, ng, stat, inven);
 
         //salary.work(hero);
         //salary.skill();

@@ -2,6 +2,9 @@ package RPG_project.test;
 
 
 import RPG_project.character.*;
+import RPG_project.event.*;
+import RPG_project.item.*;
+import RPG_project.*;
 
 public class SimpleTest {
     public static void main(String[] args) {

@@ -17,7 +17,7 @@ public class NightGang extends Gangster{
     //------------------------------------------------------------------
 
     //생성자
-    public NightGang(String name, int gangCnt, int power, int def) { //mp 기능 만들어야 하나?
+    public NightGang(String name, int gangCnt, int power, int def) {
         super(name);
         this.gangCnt = this.fullGangCnt = gangCnt;
         this.power = power;
@@ -59,14 +59,14 @@ public class NightGang extends Gangster{
     //-----------------------------------------------------------
 
     public int getSkill(Hero hero) {
-        int s = hero.getJobType().skill();
+        int s = hero.getJobNow().skill();
         return s;
     }
 
     @Override
     public double attack(Hero hero) {
-        int skill = hero.getJobType().skill();
-        double damage = (int)(power * getGangRate());
+        int skill = hero.getJobNow().skill();
+        double damage = (int)(power * getGangRate()) + skill;
         return damage;
 
     }
