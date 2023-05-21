@@ -43,10 +43,12 @@ public class Hero {
 
     public void gainHp(int hp) {
         this.hp += hp;
+        if (this.hp > this.fullHp) this.hp = this.fullHp;
     }
 
     public void loseHp(int hp) {
         this.hp -= hp;
+        if (this.hp < 0) this.hp = 0;
     }
 
     public void zeroHp() { //hp를 0으로 만드는 메소드
@@ -59,6 +61,7 @@ public class Hero {
 
     public void loseMoney(int money) {
         this.money -= money;
+        if (this.money < 0) this.money = 0;
     }
 
     public void setJobType(Job jobType) {

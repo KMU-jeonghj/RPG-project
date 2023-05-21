@@ -8,9 +8,9 @@ import javax.sound.sampled.LineUnavailableException;
 
 public class Event {
     Scanner input = new Scanner(System.in); //스캐너 객체 생성
-    Beep wedRose = new Beep(); // Beep 객체 생성
+    private Beep wedRose = new Beep(); // Beep 객체 생성
 
-    public void switchEvent(int year, Hero hero, Gangster gangster) throws LineUnavailableException, InterruptedException //Game 클래스의 year
+    public void switchEvent(int year, Hero hero, Gangster gangster) throws LineUnavailableException, InterruptedException
     {
         switch(year) {
             case 1985:
@@ -27,7 +27,7 @@ public class Event {
     }
 
     public void eventSong() throws LineUnavailableException, InterruptedException {
-        wedRose.playSong(); // 만들었는데 전체 코드 고려 안 하고 이름 붙여서 다시 수정해야함
+        wedRose.playSong();
     }
 
      public void eventWar(Hero hero, Gangster gangster) throws InterruptedException {
