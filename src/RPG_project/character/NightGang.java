@@ -99,6 +99,5 @@ public class NightGang extends Gangster{
             hero.loseHp((int)heroDamage);
             System.out.printf("받은 데미지 %.1f\n", heroDamage);
         }
-
     }
 }
