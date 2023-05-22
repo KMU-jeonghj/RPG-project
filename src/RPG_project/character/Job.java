@@ -33,6 +33,14 @@ public abstract class Job {
         this.mp = 0;
     }
 
+    public static int getMp() {
+        return mp;
+    }
+
+    public static int getFullMp() {
+        return fullMp;
+    }
+
     public String getJobName() {
         return jobName;
     }

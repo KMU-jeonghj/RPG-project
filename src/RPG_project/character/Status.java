@@ -7,9 +7,9 @@ public class Status {
         System.out.println("\n---------------------------------------------------\n");
         System.out.printf("\t\t\t%s | GANG[%d / %d]\n",g1.getName(), g1.getGangCnt(), g1.getFullGangCnt());
         System.out.println("\n---------------------------------------------------\n");
-        System.out.printf("%s | GANG[%d / %d]\t\t%s | HP [%d / %d]\n\n",
+        System.out.printf("%s | GANG[%d / %d]\t%s | HP [%d / %d] MP [%d / %d]\n\n",
                 g2.getName(), g2.getGangCnt(), g2.getFullGangCnt(),
-                hero.getName(), hero.getHp(), hero.getFullHp());
+                hero.getName(), hero.getHp(), hero.getFullHp(),hero.getJobNow().getMp(), hero.getJobNow().getFullMp());
     }
     void showBattleStatTest(Hero hero, Enemy e1, Enemy e2) {
         System.out.println("\n---------------------------------------------------\n");
