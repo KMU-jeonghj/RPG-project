@@ -23,12 +23,12 @@ public class BattleTest {
         Inventory inven = new Inventory();
 
         hero.setJobNow(salary);
+        //salary.setMp(25);
 
         stage.battle(hero, e1, ng, stat, inven);
 
         //salary.work(hero);
         //salary.skill();
-
 
     }
 }

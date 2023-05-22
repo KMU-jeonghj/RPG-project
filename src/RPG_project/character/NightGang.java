@@ -1,5 +1,7 @@
 package RPG_project.character;
 
+import RPG_project.item.Inventory;
+
 import java.util.Random;
 
 public class NightGang extends Gangster{
@@ -99,5 +101,25 @@ public class NightGang extends Gangster{
             hero.loseHp((int)heroDamage);
             System.out.printf("받은 데미지 %.1f\n", heroDamage);
         }
+    }
+
+    public void nightChoice() {
+
+    }
+
+    public void fight(Stage stage, Hero hero, Gangster g1, Gangster g2, Status stat, Inventory inventory) {
+        stage.battle(hero, g1, g2, stat, inventory);
+    }
+
+    public void takeMoney() {
+
+    }
+
+    public void chat() {
+
+    }
+
+    public void sleep() {
+
     }
 }

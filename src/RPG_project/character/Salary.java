@@ -14,7 +14,7 @@ public class Salary extends Job{
         super();
         this.jobName = "영업사원";
         //this.jobYear = 1;
-        this.casePower = 5;
+        this.casePower = 30;
         this.salesPower = 5;
     }
     //-----------------------------------------------------
@@ -57,7 +57,7 @@ public class Salary extends Job{
         System.out.println("\n서류를 작성합니다\n");//피로도에 따라 다른 메세지 출력 기능도 생각해보기
 
         int result = (int) (30 * hero.getTiredrate());
-        int wage = (int) (5000 * hero.getTiredrate());
+        int wage = (int) (3000 * hero.getTiredrate());
         System.out.printf("\n업무 완료\n 서류가방 무게 : %d(+%d)\n 월급 : %d(+%d)\n",
                 casePower, result, hero.getMoney(), wage);
         System.out.printf("HP : %d(-%d)/%d\n",hero.getHp(), hpMinus, hero.getFullHp());
@@ -69,7 +69,7 @@ public class Salary extends Job{
         int hpMinus = 15;
         System.out.println("\n거래처 직원을 설득하고 있습니다.\n");
         int result = (int) (120 * hero.getTiredrate());
-        int wage = (int) (3000 * hero.getTiredrate());
+        int wage = (int) (5000 * hero.getTiredrate());
         System.out.printf("\n업무 완료\n 영업능력 : %d(+%d)\n 월급 : %d(+%d)\n",
                 salesPower, result, hero.getMoney(), wage);
         System.out.printf("HP : %d(-%d)/%d\n",hero.getHp(), hpMinus, hero.getFullHp());
@@ -82,7 +82,7 @@ public class Salary extends Job{
     public void exercise(Hero hero) {
         int hpMinus = 10;
         System.out.println("\n오늘은 하체!\n"); //랜덤 출력 기능?
-        int result = (int) (100 * hero.getTiredrate());
+        int result = (int) (30 * hero.getTiredrate());
         if (result + mp > fullMp) {
             result =  result - fullMp;
         }
@@ -114,7 +114,16 @@ public class Salary extends Job{
     //스킬 메소드
     public int edgeAttack() {
         int mul = 1;
-        return  casePower;
+        int mpMinus = 25;
+        if (mp - mpMinus < 0) {
+            System.out.println("mp가 부족합니다.");
+            return skill();
+        }
+        else {
+            System.out.printf("MP : %d(-%d)/%d\n", mp, mpMinus, fullMp);
+            loseMp(mpMinus);//mp감소
+            return (int)(casePower * 0.6);
+        }
     }
 
     public int persuade() {
@@ -140,6 +149,5 @@ public class Salary extends Job{
         };
         return skillDamage;
     }
-
     //스킬 레벨업
 }
