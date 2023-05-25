@@ -3,12 +3,12 @@ package RPG_project.character;
 public class Status {
 
 
-    void showBattleStat(Hero hero, Gangster g1, Gangster g2) {
+    void showBattleStat(Hero hero, Gangster enemy, Gangster nightGang) {
         System.out.println("\n---------------------------------------------------\n");
-        System.out.printf("\t\t\t%s | GANG[%d / %d]\n",g1.getName(), g1.getGangCnt(), g1.getFullGangCnt());
+        System.out.printf("\t\t\t%s | GANG[%d / %d]\n",enemy.getName(), enemy.getGangCnt(), enemy.getFullGangCnt());
         System.out.println("\n---------------------------------------------------\n");
         System.out.printf("%s | GANG[%d / %d]\t%s | HP [%d / %d] MP [%d / %d]\n\n",
-                g2.getName(), g2.getGangCnt(), g2.getFullGangCnt(),
+                nightGang.getName(), nightGang.getGangCnt(), nightGang.getFullGangCnt(),
                 hero.getName(), hero.getHp(), hero.getFullHp(),hero.getJobNow().getMp(), hero.getJobNow().getFullMp());
     }
     void showBattleStatTest(Hero hero, Enemy e1, Enemy e2) {

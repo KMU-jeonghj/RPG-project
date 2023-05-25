@@ -29,6 +29,5 @@ public class BattleTest {
 
         //salary.work(hero);
         //salary.skill();
-
     }
 }
