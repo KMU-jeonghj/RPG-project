@@ -20,12 +20,12 @@ public class BattleTest {
         Salary salary = new Salary();
         NightGang ng = new NightGang("nightGang", 50, 30, 30);
         Status stat = new Status();
-        Inventory inven = new Inventory();
+        Inventory inventory = new Inventory();
 
         hero.setJobNow(salary);
         //salary.setMp(25);
 
-        stage.battle(hero, e1, ng, stat, inven);
+        stage.battle(hero, e1, ng, stat, inventory);
 
         //salary.work(hero);
         //salary.skill();

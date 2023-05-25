@@ -49,12 +49,12 @@ public class Stage {
             if (esc) break; // 도망치다 선택시 종료
             stat.showBattleStat(hero, enemy, nightGang);
 
-            System.out.println("Hero 공격");
+            System.out.printf("%s 공격\n", nightGang.getName());
             enemy.attacked(nightGang, hero);
             stat.showBattleStat(hero, enemy, nightGang);
             if (enemy.isZeroGang()) break;
 
-            System.out.println("Enemy 공격");
+            System.out.printf("%s 공격\n", enemy.getName());
             nightGang.attacked(enemy, hero);
             stat.showBattleStat(hero, enemy, nightGang);
             if (nightGang.isZeroGang()) break;

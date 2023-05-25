@@ -77,7 +77,7 @@ public class NightGang extends Gangster{
     }
 
     @Override
-    public void attacked(Gangster gang, Hero hero) {
+    public void attacked(Gangster gang, Hero hero) {//hero Hp 차감위해 오버라이드
         double damage;
         double given = gang.attack(hero);
         System.out.printf("보낸 데미지 %.1f\n", given);
@@ -99,7 +99,7 @@ public class NightGang extends Gangster{
         double randNum = rand.nextDouble();
         if (randNum < heroAttacked) {
             System.out.printf("%s 가 공격받았다!\n", hero.getName());
-
+            //damage를 hp 감소 비율로 적용시켜야하므로 attack()을 코드채로 붙여넣음
             double heroDamage = ((double)damage/fullGangCnt) * 100;
             hero.loseHp((int)heroDamage);
             System.out.printf("받은 데미지 %.1f\n", heroDamage);
