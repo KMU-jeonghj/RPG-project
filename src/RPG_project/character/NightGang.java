@@ -77,7 +77,7 @@ public class NightGang extends Gangster{
     }
 
     @Override
-    public void attacked(Gangster gang, Hero hero) {
+    public void attacked(Gangster gang, Hero hero) {//hero Hp 차감위해 오버라이드
         double damage;
         double given = gang.attack(hero);
         System.out.printf("보낸 데미지 %.1f\n", given);
@@ -99,7 +99,7 @@ public class NightGang extends Gangster{
         double randNum = rand.nextDouble();
         if (randNum < heroAttacked) {
             System.out.printf("%s 가 공격받았다!\n", hero.getName());
-
+            //damage를 hp 감소 비율로 적용시켜야하므로 attack()을 코드채로 붙여넣음
             double heroDamage = ((double)damage/fullGangCnt) * 100;
             hero.loseHp((int)heroDamage);
             System.out.printf("받은 데미지 %.1f\n", heroDamage);
@@ -113,11 +113,11 @@ public class NightGang extends Gangster{
         System.out.println("\t3. 잡담하기");
         System.out.println("\t4. 잠자기\n");
 
-        String s = input.next();
+        String s = input.nextLine();
         switch (s) {
             case "1" -> fight(stage, hero, g1, g2, stat, inventory);
             case "2" -> takeMoney(hero);
-            case "3" -> chat();
+            case "3" -> chat(text);
             case "4" -> sleep(hero);
             default -> {
                 System.out.println("올바른 값을 입력해 주세요.");
@@ -135,8 +135,8 @@ public class NightGang extends Gangster{
         hero.gainMoney(money);
     }
 
-    public void chat() {
-
+    public void chat(Text text) {
+        text.printTextRand(text.getChatScript(), text.getSpeaker1());
     }
 
     public void sleep(Hero hero) {

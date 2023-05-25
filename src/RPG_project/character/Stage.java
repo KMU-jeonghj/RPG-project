@@ -41,23 +41,23 @@ public class Stage {
 
     }
 
-    public void battle(Hero hero, Gangster g1, Gangster g2, Status stat, Inventory inventory) {
+    public void battle(Hero hero, Gangster enemy, Gangster nightGang, Status stat, Inventory inventory) {
 
         while(true) {
             boolean esc; //초기화
              esc = battleActChoice(hero, inventory, false); // 1. 싸운다 2. 아이템 3. 설득(영입사원일시) 4.도망간다(큰 피해입고 생존, 신뢰도 감소)
             if (esc) break; // 도망치다 선택시 종료
-            stat.showBattleStat(hero, g1, g2);
+            stat.showBattleStat(hero, enemy, nightGang);
 
-            System.out.println("Hero 공격");
-            g1.attacked(g2, hero);
-            stat.showBattleStat(hero, g1, g2);
-            if (g1.isZeroGang()) break;
+            System.out.printf("%s 공격\n", nightGang.getName());
+            enemy.attacked(nightGang, hero);
+            stat.showBattleStat(hero, enemy, nightGang);
+            if (enemy.isZeroGang()) break;
 
-            System.out.println("Enemy 공격");
-            g2.attacked(g1, hero);
-            stat.showBattleStat(hero, g1, g2);
-            if (g2.isZeroGang()) break;
+            System.out.printf("%s 공격\n", enemy.getName());
+            nightGang.attacked(enemy, hero);
+            stat.showBattleStat(hero, enemy, nightGang);
+            if (nightGang.isZeroGang()) break;
         }
     }
     
@@ -72,7 +72,7 @@ public class Stage {
         System.out.println("\t3. 회유 (영업사원일시 가능)");
         System.out.println("\t4. 도망간다 (패거리 수와 주인공 체력에 큰 피해를 입습니다. 신뢰도도 감소합니다.)\n");
 
-        String s = input.next(); //숫자가 아니라 문자열을 입력하는 경우 고려
+        String s = input.nextLine(); //숫자가 아니라 문자열을 입력하는 경우 고려
         switch (s) {
             case "1" -> esc = false; // 그대로 전투 진행
             case "2" -> {
