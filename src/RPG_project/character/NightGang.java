@@ -1,10 +1,13 @@
 package RPG_project.character;
 
-import RPG_project.item.Inventory;
+import RPG_project.event.*;
+import RPG_project.item.*;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class NightGang extends Gangster{
+    Scanner input = new Scanner(System.in);
     Random rand = new Random();
     private double heroAttacked = 0.3;
 
@@ -103,23 +106,40 @@ public class NightGang extends Gangster{
         }
     }
 
-    public void nightChoice() {
+    public void nightChoice(Stage stage, Hero hero, Gangster g1, Gangster g2, Status stat, Inventory inventory, Text text) {
+        System.out.println("\n행동을 선택하세요!\n");
+        System.out.println("\t1. 세력확장");
+        System.out.println("\t2. 수금");
+        System.out.println("\t3. 잡담하기");
+        System.out.println("\t4. 잠자기\n");
 
+        String s = input.next();
+        switch (s) {
+            case "1" -> fight(stage, hero, g1, g2, stat, inventory);
+            case "2" -> takeMoney(hero);
+            case "3" -> chat();
+            case "4" -> sleep(hero);
+            default -> {
+                System.out.println("올바른 값을 입력해 주세요.");
+                nightChoice(stage, hero, g1, g2, stat, inventory, text);
+            }
+        }
     }
 
     public void fight(Stage stage, Hero hero, Gangster g1, Gangster g2, Status stat, Inventory inventory) {
         stage.battle(hero, g1, g2, stat, inventory);
     }
 
-    public void takeMoney() {
-
+    public void takeMoney(Hero hero) {
+        int money = (int)(this.gangCnt * 1.5);
+        hero.gainMoney(money);
     }
 
     public void chat() {
 
     }
 
-    public void sleep() {
-
+    public void sleep(Hero hero) {
+        hero.gainMoney(50);
     }
 }
