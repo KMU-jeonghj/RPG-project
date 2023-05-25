@@ -113,11 +113,11 @@ public class NightGang extends Gangster{
         System.out.println("\t3. 잡담하기");
         System.out.println("\t4. 잠자기\n");
 
-        String s = input.next();
+        String s = input.nextLine();
         switch (s) {
             case "1" -> fight(stage, hero, g1, g2, stat, inventory);
             case "2" -> takeMoney(hero);
-            case "3" -> chat();
+            case "3" -> chat(text);
             case "4" -> sleep(hero);
             default -> {
                 System.out.println("올바른 값을 입력해 주세요.");
@@ -135,8 +135,8 @@ public class NightGang extends Gangster{
         hero.gainMoney(money);
     }
 
-    public void chat() {
-
+    public void chat(Text text) {
+        text.printTextRand(text.getChatScript(), text.getSpeaker1());
     }
 
     public void sleep(Hero hero) {

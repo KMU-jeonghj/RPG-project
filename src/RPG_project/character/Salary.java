@@ -99,7 +99,7 @@ public class Salary extends Job{
         System.out.println("\t2. 영업현장 나가기 - (영업능력 ↑ , 돈 ↑)");
         System.out.println("\t3. 몰래 운동하기 - (mp 회복)\n");
 
-        String num = input.next(); //숫자가 아니라 문자열을 입력하는 경우 고려
+        String num = input.nextLine(); //숫자가 아니라 문자열을 입력하는 경우 고려
         switch (num) {
             case "1" -> makePaper(hero);
             case "2" -> meetClient(hero);
@@ -137,7 +137,7 @@ public class Salary extends Job{
         System.out.println("\t2. 서류가방 모서리 공격");
         //System.out.println("\t3. 회유하기\n");
 
-        String skillNum = input.next();
+        String skillNum = input.nextLine();
         int skillDamage = switch (skillNum) {
             case "1" -> 0;
             case "2" -> edgeAttack();

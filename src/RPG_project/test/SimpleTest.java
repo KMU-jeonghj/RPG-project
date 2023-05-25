@@ -5,12 +5,14 @@ import RPG_project.character.*;
 import RPG_project.event.*;
 import RPG_project.item.*;
 import RPG_project.*;
+import java.util.Random;
+import java.util.Scanner;
 
 public class SimpleTest {
     public static void main(String[] args) {
-        Enemy e = new Enemy("e", 100, 10 , 10);
-        int a = (int)(e.getGangCnt() * 0.3);
-        System.out.println(a);
+        Random rand = new Random();
+        for (int i = 0; i < 10; i++)
+            System.out.println(rand.nextInt(10));
     }
 
 }

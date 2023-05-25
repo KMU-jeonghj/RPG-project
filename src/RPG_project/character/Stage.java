@@ -72,7 +72,7 @@ public class Stage {
         System.out.println("\t3. 회유 (영업사원일시 가능)");
         System.out.println("\t4. 도망간다 (패거리 수와 주인공 체력에 큰 피해를 입습니다. 신뢰도도 감소합니다.)\n");
 
-        String s = input.next(); //숫자가 아니라 문자열을 입력하는 경우 고려
+        String s = input.nextLine(); //숫자가 아니라 문자열을 입력하는 경우 고려
         switch (s) {
             case "1" -> esc = false; // 그대로 전투 진행
             case "2" -> {
