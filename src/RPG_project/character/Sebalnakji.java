@@ -30,12 +30,6 @@ public class Sebalnakji extends Enemy{
     }
 
     @Override
-    public int getCredReward() { //접근자
-        return credReward;
-    }
-
-
-    @Override
     public double attack(Hero hero)
     {
         double damage = (int)(power * getGangRate()) + enemySkill();
@@ -43,22 +37,4 @@ public class Sebalnakji extends Enemy{
         return damage;//데미지 리턴
     }
 
-    @Override
-    public void attacked(Gangster gang, Hero hero)
-    {
-        double damaged;
-        double given = hero.attack(hero);
-        System.out.printf("보낸 데미지 %.1f", given);
-        System.out.println("방어 %.1f\n", def);
-        damaged = given - def;
-
-        if(damaged <= 0) {
-            damaged = 0;
-            System.out.println("MISS!");
-        }
-
-        enemy.gangCnt -= damaged;
-        if ( emeny.gangCnt < 0) gangCnt = 0;
-        gangCnt = (int)gangCnt;
-    }
 }
