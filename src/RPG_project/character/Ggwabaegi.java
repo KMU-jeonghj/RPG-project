@@ -2,11 +2,11 @@ package RPG_project.character;
 
 import java.util.Random;
 
-public class Sebalnakji extends Enemy{
+public class Ggwabaegi extends Enemy{
 
     Random rand = new Random();
 
-    public Sebalnakji() {
+    public Ggwabaegi() {
         super("꽈배기",25, 30, 20); //이름, 조직원수, 공격력, 방어력
         this.credReward = 45;
     }
