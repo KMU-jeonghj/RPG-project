@@ -151,4 +151,12 @@ public class Hero {
         }
     }
 
+    public void workDay() {
+        int workCnt = 0;
+        while (workCnt != 2) {
+            getJobNow().work(this);
+            workCnt++;
+        }
+    }
+
 }
