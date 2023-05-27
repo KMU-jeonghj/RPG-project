@@ -20,6 +20,8 @@ public class NightGang extends Gangster{
     private Enemy[] enemyArr;//싸울 적을 저장할 배열, 조건을 만족하면 다음 적과 싸울 수 있다.
 
     private int credibility;
+
+    private boolean avoid = false; //회피 플래그 변수
     //------------------------------------------------------------------
 
     //생성자

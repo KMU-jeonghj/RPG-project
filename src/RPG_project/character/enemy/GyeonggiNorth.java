@@ -126,8 +126,5 @@ public class GyeonggiNorth extends Enemy implements NegoEnemy{
             input.nextLine();
             //계속 전투 진행
         }
-
-
     }
-
 }

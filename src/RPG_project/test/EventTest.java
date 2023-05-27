@@ -12,7 +12,7 @@ public class EventTest {
 //        beep.playSong();
         Event event = new Event();
 //        event.eventSong();
-//        Text text = new Text();
+        Text text = new Text();
 //        text.printTextRand(text.getChatScript(), text.getSpeaker1());
         Salary salary = new Salary();
         Hero hero = new Hero("hero");
