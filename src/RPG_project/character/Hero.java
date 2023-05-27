@@ -113,6 +113,14 @@ public class Hero {
         return salary;
     }
 
+    public Butcher getButcher() {
+        return butcher;
+    }
+
+    public Actor getActor() {
+        return actor;
+    }
+
     //-----------------------------------------------------------------------
 
 
