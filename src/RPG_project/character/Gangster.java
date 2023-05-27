@@ -33,12 +33,20 @@ public class Gangster {
         if (this.gangCnt > this.fullGangCnt) this.gangCnt = this.fullGangCnt;
     }
 
+    public void zeroGangCnt() {
+        this.gangCnt = 0;
+    }
+
     public void fillGangCnt() {
         this.gangCnt = this.fullGangCnt;
     }
 
     public void setFullGangCnt(int fullGangCnt) {
         this.fullGangCnt = fullGangCnt;
+    }
+
+    public void gainFullGangCnt(int fullGangCnt) {
+        this.fullGangCnt += fullGangCnt;
     }
 
     public void setPower(int power) {
@@ -78,7 +86,7 @@ public class Gangster {
         return  ((double)gangCnt/fullGangCnt);
     }
 
-    public boolean isZeroGang() {
+    public boolean isGangZero() {
         return (this.gangCnt == 0);
     }
 

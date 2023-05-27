@@ -38,8 +38,34 @@ public class Stage {
     //전투 메소드
 
     //-----------------------------------------------------------------------
-    public void debate() {//논쟁 메소드, 회유 이벤트시
+    public void checkNego(Hero hero, Inventory inventory) {//논쟁 메소드, 회유 이벤트시
+        if (isSalary(hero) && isNego()) {
+            System.out.printf("%s : 모두 싸움을 멈춰 줘!!!\n\n", hero.getName());
+            input.nextLine();
+            System.out.println("\n순간, 모두의 이목이 집중된다.\n");
+            input.nextLine();
+            System.out.printf("\n%s의 두목 : 무슨 말을 하려는거지...?\n\n", enemyNow.getName());
+            input.nextLine();
+            System.out.printf("%s : 잠시만... 내 말을 들어줘!\n\n", hero.getName());
+            input.nextLine();
 
+            ((NegoEnemy) enemyNow).debate(hero); //논쟁 시작
+        }
+
+        else if (isNego()) {
+            System.out.println("영업사원을 선택헸을 때 실행가능합니다.");
+            battleActChoice(hero, inventory, false);
+        }
+
+        else if (isSalary(hero)) {
+            System.out.println("회유 가능한 패거리가 아닙니다.");
+            battleActChoice(hero, inventory, false);
+        }
+
+        else {
+            System.out.println("영업 사원이 아니고, 회유가능한 패거리가 아닙니다");
+            battleActChoice(hero, inventory, false);
+        }
     }
 
     public void battle(Hero hero, Gangster enemy, Gangster nightGang, Status stat, Inventory inventory) {
@@ -53,27 +79,27 @@ public class Stage {
             System.out.printf("%s 공격\n", nightGang.getName());
             enemy.attacked(nightGang, hero);
             stat.showBattleStat(hero, enemy, nightGang);
-            if (enemy.isZeroGang()) break;
+            if (enemy.isGangZero()) break;
 
             System.out.printf("%s 공격\n", enemy.getName());
             nightGang.attacked(enemy, hero);
             stat.showBattleStat(hero, enemy, nightGang);
-            if (nightGang.isZeroGang()) break;
+            if (nightGang.isGangZero()) break;
         }
     }
     
     public boolean isSalary(Hero hero) { //영업사원 인지?
         return (hero.getJobNow() instanceof Salary);
     } //영업사원 인지?
-    public boolean isNorth() {
-        return (this.enemyNow instanceof GyeonggiNorth);
-    } //경기 북부인지?
+    public boolean isNego() {
+        return (enemyNow instanceof NegoEnemy);
+    }
 
     public boolean battleActChoice(Hero hero, Inventory inventory, boolean esc) {
         System.out.println("\n행동을 선택하세요!\n");
         System.out.println("\t1. 싸운다");
         System.out.println("\t2. 인벤토리");
-        System.out.println("\t3. 회유 (영업사원일시 가능)");//조건 수정 1.최종보스 전 패거리 2. salesPower 만독
+        System.out.println("\t3. 회유 (조건부)");
         System.out.println("\t4. 도망간다 (패거리 수와 주인공 체력에 큰 피해를 입습니다. 신뢰도도 감소합니다.)\n");
 
         String s = input.nextLine(); //숫자가 아니라 문자열을 입력하는 경우 고려
@@ -83,15 +109,8 @@ public class Stage {
                 inventory.useItem(hero);
                 battleActChoice(hero, inventory, esc);//아이템 사용 후 다시 선택
             }
-            case "3" -> {
-                if (!isSalary(hero)) {//영입사원이 아닐시
-                    System.out.println("영업사원일 때만 선택할 수 있습니다.");
-                    battleActChoice(hero, inventory, esc);
-                }
-                else {
-                    hero.getSalary().persuade();// 임시, 여기다 설전 메소드 만들기
-                }
-            }
+            case "3" -> checkNego(hero, inventory); //회유 조건 체크
+
             case "4" -> {
                 esc = true;
                 //피해입는 실행문 추가
