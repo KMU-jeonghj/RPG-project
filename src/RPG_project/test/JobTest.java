@@ -7,11 +7,9 @@ public class JobTest {
         Scanner input = new Scanner(System.in);
         Hero hero = new Hero("hero");
         Salary salary = new Salary();
+        hero.setJobNow(salary);
 
-        while (true) {
-            String s = input.next();
-            if (s.equals("-1")) break;
-            salary.work(hero);
-        }
+
+        hero.workDay();
     }
 }
