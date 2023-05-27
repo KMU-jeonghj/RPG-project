@@ -38,7 +38,7 @@ public class Stage {
     //전투 메소드
 
     //-----------------------------------------------------------------------
-    public void checkNego(Hero hero, Inventory inventory) {//논쟁 메소드, 회유 이벤트시
+    public void checkNego(Hero hero, Gangster nightGang, Inventory inventory) {//논쟁 메소드, 회유 이벤트시
         if (isSalary(hero) && isNego()) {
             System.out.printf("%s : 모두 싸움을 멈춰 줘!!!\n\n", hero.getName());
             input.nextLine();
@@ -49,22 +49,22 @@ public class Stage {
             System.out.printf("%s : 잠시만... 내 말을 들어줘!\n\n", hero.getName());
             input.nextLine();
 
-            ((NegoEnemy) enemyNow).debate(hero); //논쟁 시작
+            ((NegoEnemy) enemyNow).debate(hero, (NightGang) nightGang); //논쟁 시작
         }
 
         else if (isNego()) {
             System.out.println("영업사원을 선택헸을 때 실행가능합니다.");
-            battleActChoice(hero, inventory, false);
+            battleActChoice(hero, nightGang, inventory, false);
         }
 
         else if (isSalary(hero)) {
             System.out.println("회유 가능한 패거리가 아닙니다.");
-            battleActChoice(hero, inventory, false);
+            battleActChoice(hero, nightGang, inventory, false);
         }
 
         else {
             System.out.println("영업 사원이 아니고, 회유가능한 패거리가 아닙니다");
-            battleActChoice(hero, inventory, false);
+            battleActChoice(hero, nightGang, inventory, false);
         }
     }
 
@@ -72,7 +72,7 @@ public class Stage {
 
         while(true) {
             boolean esc; //초기화
-             esc = battleActChoice(hero, inventory, false); // 1. 싸운다 2. 아이템 3. 설득(영입사원일시) 4.도망간다(큰 피해입고 생존, 신뢰도 감소)
+             esc = battleActChoice(hero, nightGang, inventory, false); // 1. 싸운다 2. 아이템 3. 설득(영입사원일시) 4.도망간다(큰 피해입고 생존, 신뢰도 감소)
             if (esc) break; // 도망치다 선택시 종료
             stat.showBattleStat(hero, enemy, nightGang);
 
@@ -84,7 +84,7 @@ public class Stage {
             System.out.printf("%s 공격\n", enemy.getName());
             nightGang.attacked(enemy, hero);
             stat.showBattleStat(hero, enemy, nightGang);
-            if (nightGang.isGangZero()) break;
+            if (nightGang.isGangZero() || hero.isHpZero()) break;
         }
     }
     
@@ -95,7 +95,7 @@ public class Stage {
         return (enemyNow instanceof NegoEnemy);
     }
 
-    public boolean battleActChoice(Hero hero, Inventory inventory, boolean esc) {
+    public boolean battleActChoice(Hero hero, Gangster nightGang,Inventory inventory, boolean esc) {
         System.out.println("\n행동을 선택하세요!\n");
         System.out.println("\t1. 싸운다");
         System.out.println("\t2. 인벤토리");
@@ -107,17 +107,21 @@ public class Stage {
             case "1" -> esc = false; // 그대로 전투 진행
             case "2" -> {
                 inventory.useItem(hero);
-                battleActChoice(hero, inventory, esc);//아이템 사용 후 다시 선택
+                battleActChoice(hero, nightGang, inventory, esc);//아이템 사용 후 다시 선택
             }
-            case "3" -> checkNego(hero, inventory); //회유 조건 체크
+            case "3" -> checkNego(hero, nightGang, inventory); //회유 조건 체크
 
             case "4" -> {
                 esc = true;
                 //피해입는 실행문 추가
+                hero.setHp((int)(hero.getHp() * 0.7));//hp 감소
+                hero.gainMoney((int) (hero.getMoney() * 0.7));// 돈 감소
+                nightGang.setGangCnt((int) (nightGang.getGangCnt() * 0.7));// 조직원 감소
+
             } 
             default -> { //잘못 입력시
                 System.out.println("올바른 값을 입력해 주세요.");
-                battleActChoice(hero, inventory, esc);//재귀 사용
+                battleActChoice(hero, nightGang, inventory, esc);//재귀 사용
             }
         }
         return esc;

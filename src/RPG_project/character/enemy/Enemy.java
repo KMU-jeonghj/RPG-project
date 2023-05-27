@@ -59,13 +59,19 @@ public class Enemy extends Gangster {
     @Override
     public void attacked(Gangster gang, Hero hero) {
         super.attacked(gang, hero);
+        giveReward((NightGang) gang, hero);
+
+    }
+
+    public void giveReward(NightGang nightGang, Hero hero) {
         if (isGangZero()) {//Enemy의 gangCnt가 0이면
-            System.out.printf("신뢰도 증가!\n신뢰도: %d(+%d)\n", ((NightGang) gang).getCredibility(), this.credReward);
-            ((NightGang) gang).gainCredibility(this.credReward); //타입변환
+            System.out.printf("%s를 쓰러뜨렸다!\n", this.name);
+            System.out.printf("신뢰도 증가!\n신뢰도: %d(+%d)\n", nightGang.getCredibility(), this.credReward);
+            nightGang.gainCredibility(this.credReward); //타입변환
             System.out.printf("%s의 자금 입수!\n돈: %d(+%d)\n", this.name, hero.getMoney(), this.moneyReward);
             hero.gainMoney(this.moneyReward);
-            System.out.printf("조직원 수 증가!\n조직원: %d(+%d)\n", gang.getFullGangCnt(), this.gangReward);
-            gang.gainFullGangCnt(this.gangReward);
+            System.out.printf("조직원 수 증가!\n조직원: %d(+%d)\n", nightGang.getFullGangCnt(), this.gangReward);
+            nightGang.gainFullGangCnt(this.gangReward);
         }
     }
 }
