@@ -1,16 +1,19 @@
 package RPG_project.item;
 //Item 클래스
 public class Item {
-    protected String name;
-    protected int hp, mp, def, price, cnt;
+    protected String name, info;
+    protected int hp, mp, price, cnt, no;
+    protected double gang;
 
-    public Item(String name, int hp, int mp, int def, int price) {
+    public Item(String name, int hp, int mp, double gang, int price, int no, String info) {
         this.name = name;
         this.hp = hp;
         this.mp = mp;
-        this.def = def;
+        this.gang = gang;
         this.price = price;
-        cnt = 0;
+        this.no = no;
+        this.info = info;
+        this.cnt = 0;
     }
 
     public void setCnt(int cnt) {
@@ -34,8 +37,12 @@ public class Item {
         return hp;
     }
 
-    public int getDef() {
-        return def;
+    public int getMp() {
+        return mp;
+    }
+
+    public double getGang() {
+        return gang;
     }
 
     public int getPrice() {
@@ -44,5 +51,13 @@ public class Item {
 
     public int getCnt() {
         return cnt;
+    }
+
+    public int getNo() {
+        return no;
+    }
+
+    public void printInfo() {
+        System.out.println(this.info);
     }
 }
