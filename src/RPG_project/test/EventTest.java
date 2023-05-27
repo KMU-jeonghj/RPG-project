@@ -8,19 +8,31 @@ import javax.sound.sampled.LineUnavailableException;
 
 public class EventTest {
     public static void main(String[] args) throws LineUnavailableException, InterruptedException {
-        Beep beep = new Beep();
-//        beep.playSong();
-        Event event = new Event();
-//        event.eventSong();
-        Text text = new Text();
-//        text.printTextRand(text.getChatScript(), text.getSpeaker1());
         Salary salary = new Salary();
         Hero hero = new Hero("hero");
         hero.setJobNow(salary);
         NightGang nightGang = new NightGang("nightGang", 100, 100, 100);
-        event.eventWar(hero, nightGang);
+        Event event = new Event();
+        Beep beep = new Beep();
+        Text text = new Text();
         GyeonggiNorth gn = new GyeonggiNorth();
-        //gn.debate(hero, nightGang);
+        Gangneung gangneung = new Gangneung();
+        Jangeogui jangeogui = new Jangeogui();
+
+
+
+
+//        beep.playSong();
+
+        //event.eventSong(hero);
+
+//        text.printTextRand(text.getChatScript(), text.getSpeaker1());
+
+        //event.eventWar(hero, nightGang);
+
+        gn.debate(hero, nightGang);
+        gangneung.debate(hero, nightGang);
+        jangeogui.debate(hero, nightGang);
 
 
 

@@ -150,7 +150,4 @@ public class Beep {
         System.out.println("를~~~~~~~");
         tone(466, 1000, 0.5);
     }
-
-
-
 }
