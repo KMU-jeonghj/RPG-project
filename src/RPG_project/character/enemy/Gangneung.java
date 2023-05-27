@@ -1,6 +1,7 @@
 package RPG_project.character.enemy;
 
 import RPG_project.character.Hero;
+import RPG_project.character.NightGang;
 
 import java.util.Random;
 
@@ -34,7 +35,7 @@ public class Gangneung extends Enemy implements NegoEnemy{
 
 
     @Override
-    public void debate(Hero hero) {
+    public void debate(Hero hero, NightGang nightGang) {
 
     }
 }
