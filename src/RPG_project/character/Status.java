@@ -5,7 +5,7 @@ import RPG_project.character.enemy.*;
 public class Status {
 
 
-    void showBattleStat(Hero hero, Gangster enemy, Gangster nightGang) {
+    public void showBattleStat(Hero hero, Gangster enemy, Gangster nightGang) {
         System.out.println("\n---------------------------------------------------\n");
         System.out.printf("\t\t\t%s | GANG[%d / %d]\n",enemy.getName(), enemy.getGangCnt(), enemy.getFullGangCnt());
         System.out.println("\n---------------------------------------------------\n");
@@ -13,7 +13,7 @@ public class Status {
                 nightGang.getName(), nightGang.getGangCnt(), nightGang.getFullGangCnt(),
                 hero.getName(), hero.getHp(), hero.getFullHp(),hero.getJobNow().getMp(), hero.getJobNow().getFullMp());
     }
-    void showBattleStatTest(Hero hero, Enemy e1, Enemy e2) {
+    public void showBattleStatTest(Hero hero, Enemy e1, Enemy e2) {
         System.out.println("\n---------------------------------------------------\n");
         System.out.printf("\t\t\t%s | GANG[%d / %d]\n",e1.getName(), e1.getGangCnt(), e1.getFullGangCnt());
         System.out.println("\n---------------------------------------------------\n");
@@ -22,7 +22,7 @@ public class Status {
                 hero.getName(), hero.getHp(), hero.getFullHp());
     }
 
-    public void showNowStatus(Stage stage, Hero hero, NightGang gang) {
+    public void showNowStatus(Stage stage, Hero hero, NightGang gang, int year) {
         System.out.println("·· ───── ·· ───── ··");
         System.out.println("올해: ["+ "년]\n"); //Game 클래스의 yearCnt
         System.out.println("계급: [" + gang.getGangRank() +"]");
@@ -38,5 +38,6 @@ public class Status {
         System.out.println("연기파 배우:\t[스턴트맨의 공격력: " + hero.getActor().getStuntPower()
                 + "\t 연기력: " + hero.getActor().getActiingPower()+"]");
         //enemyNow랑 StageNow 추가
+        //mp 추가
     }
 }

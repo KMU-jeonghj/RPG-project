@@ -22,7 +22,7 @@ public class Actor extends Job{
 
     //설정자
     //-------------------------------------------------------
-    public void setstuntPower(int stuntPower) {
+    public void setStuntPower(int stuntPower) {
         this.stuntPower = stuntPower;
     }
 
@@ -36,6 +36,10 @@ public class Actor extends Job{
 
     public void gainActingPower(int actingPower) {
         this.actingPower += actingPower;
+        if (this.actingPower > 70) {
+            this.actingPower = 70;
+            System.out.println("최대스킬파워에 도달했습니다.\n연기력(회피확률) : 70%");
+        }
     }
 
     //접근자
@@ -56,10 +60,15 @@ public class Actor extends Job{
         int hpMinus = 10;
         System.out.println("\n연기 학원에 다녀옵니다.\n");
 
-        int result = (int) (30 * hero.getTiredrate());
-        System.out.printf("\n업무 완료\n 연기력 : %d(+%d)", actingPower, result);
+        int result1 = (int) (20 * hero.getTiredrate()); //mp 회복량
+        if (result1 + mp > fullMp) {
+            result1 =  result1 - fullMp;
+        }
+        int result2 = (int) (5 * hero.getTiredrate());
+        System.out.printf("\n업무 완료\n 연기력 : %d(+%d)\nmp : %d(+%d)/%d\n", actingPower, result2, mp, result1, fullMp);
         System.out.printf("HP : %d(-%d)/%d\n",hero.getHp(), hpMinus, hero.getFullHp());
-        actingPower += result; //업무능력치 상승
+        actingPower += result2; //업무능력치 상승
+        gainMp(result1);
         hero.loseHp(hpMinus); //피로도 상승
     }
     public void takeMovie(Hero hero) {
@@ -78,13 +87,13 @@ public class Actor extends Job{
     //mp 회복 커맨드
     public void extra(Hero hero) {
         int hpMinus = 10;
-        int result = (int) (90 * hero.getTiredrate());
+        int result = (int) (10 * hero.getTiredrate());
         int wage = (int) (4000 * hero.getTiredrate());
         System.out.println("\n단역도 메소드 연기로!\n");
         System.out.printf("\n촬영 완료\n 연기력 : %d(+%d)\n 월급 : %d(+%d)\n",
-                stuntPower, result, hero.getMoney(), wage);
+                actingPower, result, hero.getMoney(), wage);
         System.out.printf("HP : %d(-%d)/%d\n",hero.getHp(), hpMinus, hero.getFullHp());
-        stuntPower += result;
+        gainActingPower(result);
         hero.gainMoney(wage);
         hero.loseHp(hpMinus);
     }
@@ -92,9 +101,9 @@ public class Actor extends Job{
     @Override
     public void work(Hero hero) {
         System.out.println("\n업무를 선택하세요\n");
-        System.out.println("\t1. 연기학원 다녀오기 - (연기력↑)");
-        System.out.println("\t2. 액션영화 촬영하기 - (연기력 ↑ , 돈 ↑)");
-        System.out.println("\t3. 단역 알바 뛰기 - (연기력 ↑ , 돈 ↑)\n");
+        System.out.println("\t1. 연기학원 다녀오기 - (연기력↑, mp회복)"); //mp회복, 3번으로
+        System.out.println("\t2. 액션영화 촬영하기 - (액션숙련 ↑ , 돈 ↑)");
+        System.out.println("\t3. 단역 알바 뛰기 - (연기력 ↑ , 돈 ↑)\n"); //->눈물연기 회피기
 
         String num = input.nextLine(); //숫자가 아니라 문자열을 입력하는 경우 고려
         switch (num) {
@@ -124,15 +133,15 @@ public class Actor extends Job{
     }
 
     public int actingTear() {
-        return 0;
+        return -2;
     }
-    //Stage에 설전 메소드로 연결
+
     @Override
     public int skill() {
         System.out.println("\n스킬 선택\n");
         System.out.println("\t1. 기본공격");
         System.out.println("\t2. 스턴트맨의 대리 싸움");
-        System.out.println("\t3. 단역 알바하기\n");
+        System.out.println("\t3. 눈물연기하기\n");
 
         String skillNum = input.nextLine();
         int skillDamage = switch (skillNum) {
