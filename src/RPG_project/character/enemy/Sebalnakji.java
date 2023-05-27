@@ -1,4 +1,4 @@
-package RPG_project.character;
+package RPG_project.character.enemy;
 
 import java.util.Random;
 
@@ -9,6 +9,7 @@ public class Sebalnakji extends Enemy{
     public Sebalnakji() {
         super("세발낙지",30, 20, 20);
         this.credReward = 45;
+        this.moneyReward = 80;
     }
     @Override
     public int enemySkill() { //Enemy에 있는 enemySkill을 오버라이드
@@ -29,12 +30,5 @@ public class Sebalnakji extends Enemy{
         return damage;
     }
 
-    @Override
-    public double attack(Hero hero)
-    {
-        double damage = (int)(power * getGangRate()) + enemySkill();
-
-        return damage;//데미지 리턴
-    }
 
 }

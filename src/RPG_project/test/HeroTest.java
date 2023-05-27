@@ -1,6 +1,7 @@
 package RPG_project.test;
 
 import RPG_project.character.*;
+import RPG_project.character.enemy.*;
 import RPG_project.event.Text;
 import RPG_project.item.Inventory;
 

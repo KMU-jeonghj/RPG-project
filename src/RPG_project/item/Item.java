@@ -2,11 +2,12 @@ package RPG_project.item;
 //Item 클래스
 public class Item {
     protected String name;
-    protected int hp, def, price, cnt;
+    protected int hp, mp, def, price, cnt;
 
-    public Item(String name, int hp, int def, int price) {
+    public Item(String name, int hp, int mp, int def, int price) {
         this.name = name;
         this.hp = hp;
+        this.mp = mp;
         this.def = def;
         this.price = price;
         cnt = 0;

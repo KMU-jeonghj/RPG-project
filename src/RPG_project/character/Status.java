@@ -1,5 +1,7 @@
 package RPG_project.character;
 
+import RPG_project.character.enemy.*;
+
 public class Status {
 
 
