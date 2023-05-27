@@ -12,11 +12,16 @@ import java.util.Scanner;
 public class SimpleTest {
     public static void main(String[] args) {
         Random rand = new Random();
+        Hero hero = new Hero("hero");
+
+
         for (int i = 0; i < 10; i++)
             System.out.println(rand.nextInt(10));
 
         Sebalnakji sebal = new Sebalnakji();
         System.out.println(sebal.getName());
+        GyeonggiNorth north = new GyeonggiNorth();
+        System.out.println();
     }
 
 }

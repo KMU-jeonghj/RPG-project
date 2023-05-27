@@ -1,11 +1,15 @@
 package RPG_project.character.enemy;
 
+import RPG_project.character.Hero;
+import RPG_project.character.Salary;
+
 import java.util.Random;
+import java.util.Scanner;
 
-public class GyeonggiNorth extends Enemy {
+public class GyeonggiNorth extends Enemy implements NegoEnemy{
     Random rand = new Random();
+    Scanner input = new Scanner(System.in);
 
-    private int resist; //설득도 변수 설명과 다르게 0이되면 설득
 
     public GyeonggiNorth() {
         super("경기도 북부 연합", 450, 400, 420);
@@ -41,4 +45,74 @@ public class GyeonggiNorth extends Enemy {
         }
         return damage;
     }
+
+
+    @Override
+    public void debate(Hero hero) {
+        String eName = this.name;
+        String hName = hero.getName();
+        Salary salary = (Salary) hero.getJobNow();
+
+        //첫번째 선택
+        System.out.printf("심리적 반발 : %d\n", this.resist);
+        System.out.println("1. 다같이 힘을 합쳐 남산 패거리를 물리쳐야 해!\n2. ...순순히 우리 밑으로 들어오라고!!\n");
+
+        int line = input.nextInt();
+        if (line == 1) {//정답을 선택하면 심리적 반발이 감소
+            System.out.printf("심리적 반발 : %d(-%d)\n",this.resist, salary.getSalesPower());
+            loseResist(salary.getSalesPower());
+        }
+        else {//오답일시 증가
+            System.out.printf("심리적 반발 : %d(+%d)\n",this.resist, salary.getSalesPower());
+            gainResist(salary.getSalesPower());
+        }
+
+        //두번째 선택
+        System.out.printf("\n%s의 두목 : 어째서 그래야 하지?\n", this.name);
+        System.out.printf("\n%s : 그건.. 그야..\n", hero.getName());
+
+        System.out.printf("심리적 반발 : %d\n", this.resist);
+        System.out.println("1. 이유가 어딨어, 우리가 너네보다 세니까지!!\n2. 1년 전 너의 오른팔 김두팔이 남산패거리에게 살해당했다 들었어\n");
+
+        line = input.nextInt();
+        if (line == 2) {//정답을 선택하면 심리적 반발이 감소
+            System.out.printf("심리적 반발 : %d(-%d)\n",this.resist, salary.getSalesPower());
+            loseResist(salary.getSalesPower());
+        }
+        else {//오답일시 증가
+            System.out.printf("심리적 반발 : %d(+%d)\n",this.resist, salary.getSalesPower());
+            gainResist(salary.getSalesPower());
+        }
+
+        //세번째 선택
+        System.out.printf("\n%s의 두목 : ...\n", this.name);
+
+        System.out.printf("심리적 반발 : %d\n", this.resist);
+        System.out.println("1. 우리와 손을 잡고 남산패거리에게 복수하자!\n2. 할 말 없나 보네 하하하!\n");
+
+        line = input.nextInt();
+        if (line == 1) {//정답을 선택하면 심리적 반발이 감소
+            System.out.printf("심리적 반발 : %d(-%d)\n",this.resist, salary.getSalesPower());
+            loseResist(salary.getSalesPower());
+        }
+        else {//오답일시 증가
+            System.out.printf("심리적 반발 : %d(+%d)\n",this.resist, salary.getSalesPower());
+            gainResist(salary.getSalesPower());
+        }
+
+
+        if (this.resist == 0)  {
+            System.out.printf("%s의 두목: ... 좋아, 이번만 손 잡도록 하지...\n", this.name);
+            System.out.println("회유에 성공했다!");
+            zeroGangCnt();
+        }
+        else {
+            System.out.printf("%s의 두목: 말도 안되는 소리! 역시 네놈들과 타협은 없다!\n", this.name);
+            System.out.println("회유를 실패했습니다...");
+            //계속 전투 진행
+        }
+
+
+    }
+
 }

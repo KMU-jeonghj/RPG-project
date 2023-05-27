@@ -121,7 +121,7 @@ public class Hero {
         else return (double) hp / fullHp;
     }
 
-    public boolean isZeroHp() {
+    public boolean isHpZero() {
         return (this.hp == 0);
     }
 

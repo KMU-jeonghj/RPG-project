@@ -68,7 +68,7 @@ public class Salary extends Job{
     public void meetClient(Hero hero) {
         int hpMinus = 15;
         System.out.println("\n거래처 직원을 설득하고 있습니다.\n");
-        int result = (int) (120 * hero.getTiredrate());
+        int result = (int) (10 * hero.getTiredrate());
         int wage = (int) (5000 * hero.getTiredrate());
         System.out.printf("\n업무 완료\n 영업능력 : %d(+%d)\n 월급 : %d(+%d)\n",
                 salesPower, result, hero.getMoney(), wage);
@@ -126,10 +126,6 @@ public class Salary extends Job{
         }
     }
 
-    public int persuade() {
-        return 0;
-    }
-    //Stage에 설전 메소드로 연결
     @Override
     public int skill() {
         System.out.println("\n스킬 선택\n");

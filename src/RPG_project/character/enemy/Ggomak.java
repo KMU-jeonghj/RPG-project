@@ -9,6 +9,8 @@ public class Ggomak extends Enemy{
     public Ggomak() {
         super("꼬막무침",65, 50, 70);
         this.credReward = 95;
+        this.moneyReward = 160;
+
     }
     @Override
     public int enemySkill() { //Enemy에 있는 enemySkill을 오버라이드

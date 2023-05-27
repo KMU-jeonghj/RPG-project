@@ -1,14 +1,17 @@
 package RPG_project.character.enemy;
 
+import RPG_project.character.Hero;
+
 import java.util.Random;
 
-public class Gangneung extends Enemy{
+public class Gangneung extends Enemy implements NegoEnemy{
 
     Random rand = new Random();
 
     public Gangneung() {
         super("강릉 바다뷰", 140 , 160, 110);
         this.credReward = 170; this.moneyReward = 220;
+        this.resist = 100;
     }
     @Override
     public int enemySkill() { //Enemy에 있는 enemySkill을 오버라이드
@@ -27,5 +30,11 @@ public class Gangneung extends Enemy{
                 damage = 44;
         }
         return damage;
+    }
+
+
+    @Override
+    public void debate(Hero hero) {
+
     }
 }

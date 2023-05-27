@@ -1,14 +1,20 @@
 package RPG_project.character.enemy;
 
+import RPG_project.character.Hero;
+
 import java.util.Random;
 
-public class Jangeogui extends Enemy{
+public class Jangeogui extends Enemy implements NegoEnemy{
 
     Random rand = new Random();
+
+
 
     public Jangeogui() {
         super("장어구이", 70 , 70, 55);
         this.credReward = 100;
+        this.moneyReward = 180;
+        this.resist = 100;
     }
     @Override
     public int enemySkill() { //Enemy에 있는 enemySkill을 오버라이드
@@ -27,5 +33,11 @@ public class Jangeogui extends Enemy{
                 damage = 19;
         }
         return damage;
+    }
+
+
+    @Override
+    public void debate(Hero hero) {
+
     }
 }

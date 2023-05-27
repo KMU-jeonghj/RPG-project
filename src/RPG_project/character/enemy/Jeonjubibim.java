@@ -9,6 +9,7 @@ public class Jeonjubibim extends Enemy{
     public Jeonjubibim() {
         super("전주비빔", 60, 55, 65); //이름, 조직원수, 공격력, 방어력
         this.credReward = 90;
+        this.moneyReward = 150;
     }
     @Override
     public int enemySkill() {
