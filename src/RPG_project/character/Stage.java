@@ -1,5 +1,6 @@
 package RPG_project.character;
 
+import RPG_project.character.enemy.*;
 import RPG_project.item.*;
 
 import java.util.Scanner;
@@ -13,7 +14,7 @@ public class Stage {
 
     private Enemy[] EnemyArr;
 
-    private int stageCnt;
+    private int stageNow;
 
     
 
@@ -21,16 +22,16 @@ public class Stage {
         this.enemyNow = enemyNow;
     }
 
-    public void setStageCnt(int stageCnt) {
-        this.stageCnt = stageCnt;
+    public void setStageNow(int stageNow) {
+        this.stageNow = stageNow;
     }
 
     public Enemy getEnemyNow() {
         return enemyNow;
     }
 
-    public int getStageCnt() {
-        return stageCnt;
+    public int getStageNow() {
+        return stageNow;
     }
     //Enemy 객체 생성해서 여기에 배열로 저장
     //스테이지 카운트 변수
@@ -64,12 +65,15 @@ public class Stage {
     public boolean isSalary(Hero hero) { //영업사원 인지?
         return (hero.getJobNow() instanceof Salary);
     } //영업사원 인지?
+    public boolean isNorth() {
+        return (this.enemyNow instanceof GyeonggiNorth);
+    } //경기 북부인지?
 
     public boolean battleActChoice(Hero hero, Inventory inventory, boolean esc) {
         System.out.println("\n행동을 선택하세요!\n");
         System.out.println("\t1. 싸운다");
         System.out.println("\t2. 인벤토리");
-        System.out.println("\t3. 회유 (영업사원일시 가능)");
+        System.out.println("\t3. 회유 (영업사원일시 가능)");//조건 수정 1.최종보스 전 패거리 2. salesPower 만독
         System.out.println("\t4. 도망간다 (패거리 수와 주인공 체력에 큰 피해를 입습니다. 신뢰도도 감소합니다.)\n");
 
         String s = input.nextLine(); //숫자가 아니라 문자열을 입력하는 경우 고려

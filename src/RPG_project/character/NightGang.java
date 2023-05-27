@@ -1,5 +1,6 @@
 package RPG_project.character;
 
+import RPG_project.character.enemy.*;
 import RPG_project.event.*;
 import RPG_project.item.*;
 
@@ -39,6 +40,15 @@ public class NightGang extends Gangster{
 
     public void setCredibility(int credibility) {
         this.credibility = credibility;
+    }
+    
+    public void gainCredibility(int credibility) {
+        this.credibility += credibility;
+    }
+    
+    public void loseCredibility(int credibility) {
+        this.credibility -= credibility;
+        if (this.credibility < 0) this.credibility = 0;
     }
     //----------------------------------------------------------
 
@@ -126,20 +136,21 @@ public class NightGang extends Gangster{
         }
     }
 
-    public void fight(Stage stage, Hero hero, Gangster g1, Gangster g2, Status stat, Inventory inventory) {
+    public void fight(Stage stage, Hero hero, Gangster g1, Gangster g2, Status stat, Inventory inventory) { //세력확장
         stage.battle(hero, g1, g2, stat, inventory);
     }
 
-    public void takeMoney(Hero hero) {
+    public void takeMoney(Hero hero) { //수금하기
         int money = (int)(this.gangCnt * 1.5);
         hero.gainMoney(money);
     }
 
-    public void chat(Text text) {
+    public void chat(Text text) { //잡담
         text.printTextRand(text.getChatScript(), text.getSpeaker1());
+        gainCredibility(10); //신뢰도 증가
     }
 
     public void sleep(Hero hero) {
         hero.gainMoney(50);
-    }
+    } //잠자기
 }

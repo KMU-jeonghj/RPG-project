@@ -2,6 +2,7 @@ package RPG_project.event;
 
 import java.util.Scanner; //혼선을 방지하기 위해 필요한 클래스마다 임포트
 import RPG_project.character.*; //다른 패키지이므로 import
+import RPG_project.character.enemy.*;
 
 import javax.sound.sampled.LineUnavailableException;
 
