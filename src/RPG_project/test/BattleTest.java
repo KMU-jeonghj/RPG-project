@@ -19,11 +19,13 @@ public class BattleTest {
         //gangCnt는 서로 비슷하게
         //위 조건일시 선제 공격 객체가 중후반부터 압도
         Salary salary = new Salary();
+        Butcher butcher = new Butcher();
+        Actor actor = new Actor();
         NightGang ng = new NightGang("nightGang", 50, 30, 30);
         Status stat = new Status();
         Inventory inventory = new Inventory();
 
-        hero.setJobNow(salary);
+        hero.setJobNow(actor);
         //salary.setMp(25);
 
         stage.battle(hero, e1, ng, stat, inventory);

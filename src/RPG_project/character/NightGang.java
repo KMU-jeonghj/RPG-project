@@ -12,6 +12,7 @@ public class NightGang extends Gangster{
     Random rand = new Random();
     private double heroAttacked = 0.3;
 
+
     //필드멤버
     //-----------------------------------------------------------------
     private String gangRank;
@@ -22,6 +23,8 @@ public class NightGang extends Gangster{
     private int credibility;
 
     private boolean avoid = false; //회피 플래그 변수
+    private boolean butcherAvoid = false;
+    private boolean actorAvoid = false;
     //------------------------------------------------------------------
 
     //생성자
@@ -83,25 +86,19 @@ public class NightGang extends Gangster{
     @Override
     public double attack(Hero hero) {
         int skill = hero.getJobNow().skill();
+        if (skill == -1) butcherAvoid = true;
+        if (skill == -2) actorAvoid = true;
+        if (skill < 0) skill = 0;
+
         double damage = (int)(power * getGangRate()) + skill;
         return damage;
 
     }
 
-    @Override
-    public void attacked(Gangster gang, Hero hero) {//hero Hp 차감위해 오버라이드
-        double damage;
-        double given = gang.attack(hero);
-        System.out.printf("보낸 데미지 %.1f\n", given);
-        System.out.printf("방어 %.1f\n", (weight * def * getGangRate()));
-        damage = given - (weight * def * getGangRate());
+    public void acceptDamage(Gangster gang, Hero hero, double damage) {
 
-        if (damage <= 0)  {
-            damage = 0;
-            System.out.println("MISS!");
-        }
+        if (damage == 0) System.out.println("MISS!");
 
-        //debug
         System.out.printf("받은 데미지 %.1f\n" ,damage);
         gangCnt -= damage;
         if (gangCnt < 0) gangCnt = 0;
@@ -115,6 +112,56 @@ public class NightGang extends Gangster{
             double heroDamage = ((double)damage/fullGangCnt) * 100;
             hero.loseHp((int)heroDamage);
             System.out.printf("받은 데미지 %.1f\n", heroDamage);
+
+        }
+    }
+
+    @Override
+    public void attacked(Gangster gang, Hero hero) {//hero Hp 차감위해 오버라이드
+
+        //데미지 계산
+        double damage;
+        double given = gang.attack(hero);
+        System.out.printf("보낸 데미지 %.1f\n", given);
+        System.out.printf("방어 %.1f\n", (weight * def * getGangRate()));
+        damage = given - (weight * def * getGangRate());
+
+        if (damage <= 0) damage = 0;
+
+
+        double randNum = rand.nextDouble();
+        //일정 확률로 회피
+        if (butcherAvoid) {
+            double rate = (double) (hero.getButcher().getmeatPower()); //회피 확률
+
+            if (randNum >= rate) { //회피 성공!
+                System.out.println("MISS!");
+                System.out.println("고기분신이 성공적으로 공격을 방어했습니다.");
+             }
+            else { //회피 실패
+                System.out.println("상대가 고기분신에 속지 않았습니다.");
+                acceptDamage(gang, hero, damage);
+             }
+
+            butcherAvoid = false;//초기화
+        }
+        else if (actorAvoid) {
+            double rate = hero.getActor().getActiingPower();
+
+            if (randNum >= rate) {
+                System.out.println("MISS!");
+                System.out.println("상대가 눈물연기에 감동했습니다!");
+            }
+
+            else {
+                acceptDamage(gang, hero, damage);
+                System.out.println("상대를 감동시키기에 연기력이 부족했습니다!");
+            }
+
+            actorAvoid = false;
+        }
+        else {
+            acceptDamage(gang, hero, damage);
         }
     }
 

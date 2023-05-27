@@ -22,20 +22,24 @@ public class Butcher extends Job{
 
     //설정자
     //-------------------------------------------------------
-    public void setCasePower(int knifePower) {
+    public void setKnifePower(int knifePower) {
         this.knifePower = knifePower;
     }
 
-    public void gainCasePower(int casePower) {
+    public void gainKnifePower(int knifePower) {
         this.knifePower += knifePower;
     }
 
-    public void setmeatPower(int meatPower) {
+    public void setMeatPower(int meatPower) {
         this.meatPower = meatPower;
     }
 
-    public void gainmeatPower(int meatPower) {
+    public void gainMeatPower(int meatPower) {
         this.meatPower += meatPower;
+        if (this.meatPower > 70) {
+            this.meatPower = 70;
+            System.out.println("최대스킬파워에 도달했습니다.\n고기만듦새(회피확률) : 70%");
+        }
     }
 
 
@@ -69,7 +73,7 @@ public class Butcher extends Job{
     public void meatEgo(Hero hero) {
         int hpMinus = 15;
         System.out.println("\n고기 분신을 만들고 있습니다.\n");
-        int result = (int) (120 * hero.getTiredrate());
+        int result = (int) (10 * hero.getTiredrate());
         int wage = (int) (5000 * hero.getTiredrate());
         System.out.printf("\n업무 완료\n 고기 분신 만듦새 : %d(+%d)\n 월급 : %d(+%d)\n",
                 meatPower, result, hero.getMoney(), wage);
@@ -124,7 +128,7 @@ public class Butcher extends Job{
     }
 
     public int meatEgo() {
-        return 0;
+        return -1;
     }
     //Stage에 설전 메소드로 연결
     @Override
