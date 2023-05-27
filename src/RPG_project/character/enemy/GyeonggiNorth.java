@@ -55,17 +55,17 @@ public class GyeonggiNorth extends Enemy implements NegoEnemy{
         Salary salary = (Salary) hero.getJobNow();
 
         //첫번째 선택
-        System.out.printf("심리적 반발 : %d\n", this.resist);
+        System.out.printf("%s의 회유 거절 확률 : %d\n", this.name, this.resist);
         System.out.println("1. 다같이 힘을 합쳐 남산 패거리를 물리쳐야 해!\n2. ...순순히 우리 밑으로 들어오라고!!\n");
 
         int line = input.nextInt();
         if (line == 1) {//정답을 선택하면 심리적 반발이 감소
-            System.out.printf("심리적 반발 : %d(-%d)\n",this.resist, salary.getSalesPower());
+            System.out.printf("%s의 회유 거절 확률 : %d(-%d)\n", this.name, this.resist, salary.getSalesPower());
             input.nextLine();
             loseResist(salary.getSalesPower());
         }
         else {//오답일시 증가
-            System.out.printf("심리적 반발 : %d(+%d)\n",this.resist, salary.getSalesPower());
+            System.out.printf("%s의 회유 거절 확률 : %d(+%d)\n",this.name, this.resist, salary.getSalesPower());
             input.nextLine();
             gainResist(salary.getSalesPower());
         }
@@ -76,17 +76,17 @@ public class GyeonggiNorth extends Enemy implements NegoEnemy{
         System.out.printf("\n%s : 그건.. 그야..\n", hero.getName());
         input.nextLine();
 
-        System.out.printf("심리적 반발 : %d\n", this.resist);
+        System.out.printf("%s의 회유 거절 확률 : %d\n", this.name, this.resist);
         System.out.println("1. 이유가 어딨어, 우리가 너네보다 세니까지!!\n2. 1년 전 너의 오른팔 김두팔이 남산패거리에게 살해당했다 들었어\n");
 
         line = input.nextInt();
         if (line == 2) {//정답을 선택하면 심리적 반발이 감소
-            System.out.printf("심리적 반발 : %d(-%d)\n",this.resist, salary.getSalesPower());
+            System.out.printf("%s의 회유 거절 확률 : %d(-%d)\n", this.name, this.resist, salary.getSalesPower());
             input.nextLine();
             loseResist(salary.getSalesPower());
         }
         else {//오답일시 증가
-            System.out.printf("심리적 반발 : %d(+%d)\n",this.resist, salary.getSalesPower());
+            System.out.printf("%s의 회유 거절 확률 : %d(+%d)\n", this.name, this.resist, salary.getSalesPower());
             input.nextLine();
             gainResist(salary.getSalesPower());
         }
@@ -95,17 +95,17 @@ public class GyeonggiNorth extends Enemy implements NegoEnemy{
         System.out.printf("\n%s의 두목 : ...\n", this.name);
         input.nextLine();
 
-        System.out.printf("심리적 반발 : %d\n", this.resist);
+        System.out.printf("%s의 회유 거절 확률 : %d\n", this.name, this.resist);
         System.out.println("1. 우리와 손을 잡고 남산패거리에게 복수하자!\n2. 할 말 없나 보네 하하하!\n");
 
         line = input.nextInt();
         if (line == 1) {//정답을 선택하면 심리적 반발이 감소
-            System.out.printf("심리적 반발 : %d(-%d)\n",this.resist, salary.getSalesPower());
+            System.out.printf("%s의 회유 거절 확률 : %d(-%d)\n", this.name, this.resist, salary.getSalesPower());
             input.nextLine();
             loseResist(salary.getSalesPower());
         }
         else {//오답일시 증가
-            System.out.printf("심리적 반발 : %d(+%d)\n",this.resist, salary.getSalesPower());
+            System.out.printf("%s의 회유 거절 확률 : %d(+%d)\n",this.name, this.resist, salary.getSalesPower());
             input.nextLine();
             gainResist(salary.getSalesPower());
         }
@@ -122,7 +122,7 @@ public class GyeonggiNorth extends Enemy implements NegoEnemy{
         else {
             System.out.printf("%s의 두목: 말도 안되는 소리! 역시 네놈들과 타협은 없다!\n", this.name);
             input.nextLine();
-            System.out.println("회유를 실패했습니다...");
+            System.out.println("회유에 실패했습니다...");
             input.nextLine();
             //계속 전투 진행
         }
