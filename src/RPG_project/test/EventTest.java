@@ -18,9 +18,9 @@ public class EventTest {
         Hero hero = new Hero("hero");
         hero.setJobNow(salary);
         NightGang nightGang = new NightGang("nightGang", 100, 100, 100);
-        //event.eventWar(hero, nightGang);
+        event.eventWar(hero, nightGang);
         GyeonggiNorth gn = new GyeonggiNorth();
-        gn.debate(hero, nightGang);
+        //gn.debate(hero, nightGang);
 
 
 
