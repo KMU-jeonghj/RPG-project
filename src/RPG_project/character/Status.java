@@ -49,6 +49,8 @@ public class Status {
         String s = input.nextLine();
         if (s.equals("-1"))
             game.actChoice(hero, gang, this, stage, inventory);
+        else
+            showNowStatus(stage, hero, gang, inventory, game);
 
 
     }
