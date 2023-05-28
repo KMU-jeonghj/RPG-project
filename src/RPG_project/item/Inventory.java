@@ -105,7 +105,7 @@ public class Inventory {
         }
         if (i.isGang()) {
             System.out.println("다음 턴에 조직원 회복수가 증가합니다.");
-            nightGang.setRecoverey(i.getGang());
+            nightGang.setRecovereyWeight(i.getGang());
         }
     }
 
