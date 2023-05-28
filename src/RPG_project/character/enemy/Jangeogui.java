@@ -6,7 +6,7 @@ import RPG_project.character.*;
 import java.util.Scanner;
 import java.util.Random;
 
-public class Jangeogui extends Enemy implements NegoEnemy{
+public class Jangeogui extends Enemy implements NegoEnemy, BossEnemy{
 
     Scanner input= new Scanner(System.in);
     Random rand = new Random();

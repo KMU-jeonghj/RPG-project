@@ -73,7 +73,7 @@ public class Shop {
         if (input.hasNextInt()) {
             int no = input.nextInt();
             if (no == -1) {
-                //메인 선택창
+                return null; //상점에서 나간다
             }
             else if (1 <= no && no <= 5) //valid num
                 picked = items[no];

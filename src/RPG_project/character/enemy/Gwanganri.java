@@ -2,7 +2,7 @@ package RPG_project.character.enemy;
 
 import java.util.Random;
 
-public class Gwanganri extends Enemy{
+public class Gwanganri extends Enemy implements BossEnemy{
 
     Random rand = new Random();
 

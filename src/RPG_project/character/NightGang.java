@@ -38,6 +38,7 @@ public class NightGang extends Gangster{
         this.gangCnt = this.fullGangCnt = gangCnt;
         this.power = power;
         this.def = def;
+        this.gangRank = this.rankArr[0];//막내
     }
     //------------------------------------------------------------
 
