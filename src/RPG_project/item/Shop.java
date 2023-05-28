@@ -2,6 +2,7 @@ package RPG_project.item;
 
 import RPG_project.character.*;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Shop {
@@ -65,18 +66,52 @@ public class Shop {
 
 
     public Item sellItem(Hero hero) {
+
         showItems();
-        System.out.println("구매할 아이템 번호를 입력하세요:");
-        int no = input.nextInt();
-        picked = items[no];
+
+        System.out.println("구매할 아이템 번호를 입력하세요 (상점 나가기: -1)"); //나가면 메인 선택창 메소드 호출
+        if (input.hasNextInt()) {
+            int no = input.nextInt();
+            if (no == -1) {
+                //메인 선택창
+            }
+            else if (1 <= no && no <= 5) //valid num
+                picked = items[no];
+            else {
+                System.out.println("올바른 범위의 숫자를 입력하세요\n");
+                return sellItem(hero); //재귀
+            }
+        }
+        else { //정수가 아닐 시
+            System.out.println("숫자를 입력하세요\n");
+            input.nextLine();
+            return sellItem(hero);
+        }
+
 
         if (isEnoughMoney(hero)) {
-            System.out.printf("%s를 구매했습니다.\n", picked.getName());
-            return picked;
+            System.out.printf("%s를 구매했습니다.\n돈 : %d(-%d)\n", picked.getName(), hero.getMoney(), picked.getPrice());
+            hero.loseMoney(picked.getPrice());//돈 차감
+            return picked; //아이템 전달
         }
         else {
-            System.out.println("돈이 부족합니다");
+            System.out.println("돈이 부족합니다\n");
             return sellItem(hero); //재귀, 그럼 상점을 아예 나갈려면?
+        }
+    }
+
+    public int inputInt() {
+        try {
+            if (input.hasNextInt()) {
+                int number = input.nextInt();
+                return number;
+
+            } else {
+                throw new InputMismatchException();
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("숫자를 입력해주세요");
+            return 0;
         }
     }
 
