@@ -109,9 +109,10 @@ public class GyeonggiNorth extends Enemy implements NegoEnemy{
             input.nextLine();
             gainResist(salary.getSalesPower());
         }
+        double rate = (double) (this.resist / 100); //거절 확률
+        double randNum = rand.nextDouble(); // 랜덤 생성
 
-
-        if (this.resist == 0)  {
+        if (randNum > rate)  { //확률범위 밖일때, 성공!
             System.out.printf("%s의 두목: ... 좋아, 이번만 손 잡도록 하지...\n", this.name);
             input.nextLine();
             System.out.println("회유에 성공했다!");
@@ -119,7 +120,7 @@ public class GyeonggiNorth extends Enemy implements NegoEnemy{
             zeroGangCnt();
             giveReward(nightGang, hero); //경험치 지급
         }
-        else {
+        else {// 범위안, 실패
             System.out.printf("%s의 두목: 말도 안되는 소리! 역시 네놈들과 타협은 없다!\n", this.name);
             input.nextLine();
             System.out.println("회유에 실패했습니다...");

@@ -106,7 +106,7 @@ public class Stage {
         switch (s) {
             case "1" -> esc = false; // 그대로 전투 진행
             case "2" -> {
-                inventory.useItem(hero);
+                inventory.useItem(hero, (NightGang) nightGang);
                 battleActChoice(hero, nightGang, inventory, esc);//아이템 사용 후 다시 선택
             }
             case "3" -> checkNego(hero, nightGang, inventory); //회유 조건 체크

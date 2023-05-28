@@ -60,4 +60,16 @@ public class Item {
     public void printInfo() {
         System.out.println(this.info);
     }
+
+    public boolean isHp() {
+        return (this.hp != 0);
+    }
+
+    public boolean isMp() {
+        return (this.mp != 0);
+    }
+
+    public boolean isGang() {
+        return (this.gang != 0.0);
+    }
 }
