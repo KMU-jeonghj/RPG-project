@@ -150,8 +150,8 @@ public class Game {
                 + "\t 연기력: " + hero.getActor().getActiingPower()+"]\n");
         System.out.println("[패거리 상태]");
         System.out.printf("조직원 수: [%d / %d]\n", gang.getGangCnt(), gang.getFullGangCnt());
-        System.out.printf("현재 스테이지 : [%s]\n", stage.getStageName());
-        System.out.printf("적대 페거리 : [%s]\n",stage.getEnemyNowName());
+        System.out.printf("현재 스테이지 : [%s]\n", stage.getStageNow()[0].getName());
+        System.out.printf("적대 페거리 : [%s]\n",stage.getEnemyNow().getName());
         System.out.println("\n뒤로가기 (-1)");
         String s = input.nextLine();
         if (s.equals("-1"))
