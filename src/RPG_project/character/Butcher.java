@@ -87,7 +87,7 @@ public class Butcher extends Job{
         int hpMinus = 10;
         System.out.println("\n손님은 왕, 어서오세요!\n");
         int wage = (int) (15000 * hero.getTiredrate());
-        System.out.printf("\n미소로 손님 맞이하기 완료!\n 수입이 3배로 증가!\n 월급 : %d(+%d)/%d\n", hero.getMoney(), wage);
+        System.out.printf("\n미소로 손님 맞이하기 완료!\n 수입이 3배로 증가!\n 월급 : %d(+%d)\n", hero.getMoney(), wage);
         System.out.printf("HP : %d(-%d)/%d\n",hero.getHp(), hpMinus, hero.getFullHp());
         hero.gainMoney(wage);
         hero.loseHp(hpMinus);
