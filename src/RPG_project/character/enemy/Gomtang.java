@@ -2,7 +2,7 @@ package RPG_project.character.enemy;
 
 import java.util.Random;
 
-public class Gomtang extends Enemy {
+public class Gomtang extends Enemy implements BossEnemy {
 
     Random rand = new Random();
 

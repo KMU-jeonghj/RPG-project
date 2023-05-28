@@ -10,11 +10,113 @@ import java.util.Scanner;
 public class Stage {
     Scanner input = new Scanner(System.in);
 
-    private Enemy enemyNow; //현재 싸우고 있는 적 패거리
 
-    private Enemy[] EnemyArr;
 
-    private int stageNow;
+//적 패거리 객체들
+    //----------------------------------------------------------
+
+    //목포
+    private Sebalnakji sebalnakji = new Sebalnakji();
+    private Ggwabaegi ggwabaegi = new Ggwabaegi();
+    private Gomtang gomtang = new Gomtang();
+
+    //전라도
+    private Jeonjubibim jeonjubibim = new Jeonjubibim();
+    private  Ggomak ggomak = new Ggomak();
+    private Jangeogui jangeogui = new Jangeogui();
+
+    //지방권
+    private Chungcheong chungcheong = new Chungcheong();
+    private Gangneung gangneung = new Gangneung();
+    private Gwanganri gwanganri = new Gwanganri();
+
+    //수도권
+    private GyeonggiSouth gyeonggiSouth = new GyeonggiSouth();
+    private GyeonggiNorth gyeonggiNorth = new GyeonggiNorth();
+
+
+    //적패거리 접근자들
+    //------------------------------------------
+
+    public Sebalnakji getSebalnakji() {
+        return sebalnakji;
+    }
+
+    public Ggwabaegi getGgwabaegi() {
+        return ggwabaegi;
+    }
+
+    public Gomtang getGomtang() {
+        return gomtang;
+    }
+
+    public Jeonjubibim getJeonjubibim() {
+        return jeonjubibim;
+    }
+
+    public Ggomak getGgomak() {
+        return ggomak;
+    }
+
+    public Jangeogui getJangeogui() {
+        return jangeogui;
+    }
+
+    public Chungcheong getChungcheong() {
+        return chungcheong;
+    }
+
+    public Gangneung getGangneung() {
+        return gangneung;
+    }
+
+    public Gwanganri getGwanganri() {
+        return gwanganri;
+    }
+
+    public GyeonggiSouth getGyeonggiSouth() {
+        return gyeonggiSouth;
+    }
+
+    public GyeonggiNorth getGyeonggiNorth() {
+        return gyeonggiNorth;
+    }
+
+    //--------------------------------------------------------------------
+
+    private Enemy[] stageMokpo = {new Enemy("목포", 0, 0, 0),
+            sebalnakji, ggwabaegi, gomtang};
+    private Enemy[] stageJeonra = {new Enemy("전라도", 0, 0, 0),
+        jeonjubibim, ggomak, jangeogui};
+    private Enemy[] stageCountry = {new Enemy("지방권", 0, 0, 0),
+    chungcheong, gangneung, gwanganri};
+    private Enemy[] stageCapital = {new Enemy("수도권", 0,0, 0),
+    gyeonggiSouth, gyeonggiNorth};
+
+
+    private int ei = 1;
+    private int si = 1;
+    private Enemy[][] stageArr = {null, stageMokpo, stageJeonra, stageCountry, stageCapital};
+
+    private Enemy enemyNow = stageArr[si][ei]; //현재 싸우고 있는 적 패거리
+    private String enemyNowName = enemyNow.getName();
+
+    private Enemy[] stageNow = stageArr[si]; //현재 싸우고 있는 스테이지
+    private String stageName = stageNow[0].getName();
+
+    public void plusEi() {
+        if (isBoss() && this.si == 4) {
+            System.out.println("all stages cleared");
+        }
+        else if (isBoss()) {
+            System.out.println("다음 스테이지로..");
+            this.ei = 1;
+            this.si++;
+        }
+        else
+            this.ei++;
+    }
+
 
     
 
@@ -22,17 +124,27 @@ public class Stage {
         this.enemyNow = enemyNow;
     }
 
-    public void setStageNow(int stageNow) {
+    public void setStageNow(Enemy[] stageNow) {
         this.stageNow = stageNow;
     }
+
 
     public Enemy getEnemyNow() {
         return enemyNow;
     }
 
-    public int getStageNow() {
+    public Enemy[] getStageNow() {
         return stageNow;
     }
+
+    public String getStageName() {
+        return stageName;
+    }
+
+    public String getEnemyNowName() {
+        return enemyNowName;
+    }
+
     //Enemy 객체 생성해서 여기에 배열로 저장
     //스테이지 카운트 변수
     //전투 메소드
@@ -93,6 +205,10 @@ public class Stage {
     } //영업사원 인지?
     public boolean isNego() {
         return (enemyNow instanceof NegoEnemy);
+    }
+
+    public boolean isBoss() {
+        return (enemyNow instanceof BossEnemy);
     }
 
     public boolean battleActChoice(Hero hero, Gangster nightGang,Inventory inventory, boolean esc) {

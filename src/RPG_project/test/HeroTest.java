@@ -8,6 +8,8 @@ import RPG_project.item.Inventory;
 public class HeroTest {
     public static void main(String[] args) {
         Hero hero = new Hero("hero");
+        Salary salary = new Salary();
+        hero.setJobNow(salary);
         NightGang nightGang = new NightGang("nightGang", 30, 30, 30);
         Enemy e1 = new Enemy("enemy1", 100, 40, 10);
         Enemy e2 = new Enemy("enemy2", 100, 30, 10);
@@ -16,7 +18,8 @@ public class HeroTest {
         Inventory inven = new Inventory();
         Stage stage = new Stage();
         Text text = new Text();
-        nightGang.nightChoice(stage, hero, e1, e2, stat, inven, text);
+        stat.showNowStatus(stage, hero, nightGang, 1980);
+        //nightGang.nightChoice(stage, hero, e1, e2, stat, inven, text);
 
     }
 }

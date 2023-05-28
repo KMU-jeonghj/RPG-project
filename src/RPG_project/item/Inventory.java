@@ -38,8 +38,12 @@ public class Inventory {
         }
     }
 
-    public void goShop(Game game, Shop shop) {
-
+    public void goShop(Game game, Shop shop, Hero hero) {
+        while (true){
+            Item item = shop.sellItem(hero);
+            if (item == null) break; //상점 종료
+            addItem(item); //아이템 추가
+        }
     }
 
     public void useItem(Hero hero, NightGang nightGang) {
