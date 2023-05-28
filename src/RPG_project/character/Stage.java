@@ -104,7 +104,7 @@ public class Stage {
     private Enemy[] stageNow = stageArr[si]; //현재 싸우고 있는 스테이지
     private String stageName = stageNow[0].getName();
 
-    public void plusEi() {
+    public void plusEi(NightGang nightGang, Hero hero) {
         if (isBoss() && this.si == 4) {
             System.out.println("all stages cleared");
         }
@@ -112,6 +112,7 @@ public class Stage {
             System.out.println("다음 스테이지로..");
             this.ei = 1;
             this.si++;
+            nightGang.rankUp(hero);
         }
         else
             this.ei++;
@@ -186,16 +187,19 @@ public class Stage {
             boolean esc; //초기화
              esc = battleActChoice(hero, nightGang, inventory, false); // 1. 싸운다 2. 아이템 3. 설득(영입사원일시) 4.도망간다(큰 피해입고 생존, 신뢰도 감소)
             if (esc) break; // 도망치다 선택시 종료
-            stat.showBattleStat(hero, enemy, nightGang);
+            stat.showBattleStat(hero, this.enemyNow, nightGang);
 
             System.out.printf("%s 공격\n", nightGang.getName());
-            enemy.attacked(nightGang, hero);
-            stat.showBattleStat(hero, enemy, nightGang);
-            if (enemy.isGangZero()) break;
+            this.enemyNow.attacked(nightGang, hero);
+            stat.showBattleStat(hero, this.enemyNow, nightGang);
+            if (this.enemyNow.isGangZero()) {
+                plusEi((NightGang) nightGang, hero); //다음 단계 패거리 포인팅
+                break;
+            }
 
-            System.out.printf("%s 공격\n", enemy.getName());
-            nightGang.attacked(enemy, hero);
-            stat.showBattleStat(hero, enemy, nightGang);
+            System.out.printf("%s 공격\n", this.enemyNow.getName());
+            nightGang.attacked(this.enemyNow, hero);
+            stat.showBattleStat(hero, this.enemyNow, nightGang);
             if (nightGang.isGangZero() || hero.isHpZero()) break;
         }
     }

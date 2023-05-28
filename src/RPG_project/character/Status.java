@@ -1,10 +1,12 @@
 package RPG_project.character;
 
+import RPG_project.Game;
 import RPG_project.character.enemy.*;
 import RPG_project.item.*;
+import java.util.Scanner;
 
 public class Status {
-
+    Scanner input = new Scanner(System.in);
 
     public void showBattleStat(Hero hero, Gangster enemy, Gangster nightGang) {
         System.out.println("\n---------------------------------------------------\n");
@@ -23,9 +25,9 @@ public class Status {
                 hero.getName(), hero.getHp(), hero.getFullHp());
     }
 
-    public void showNowStatus(Stage stage, Hero hero, NightGang gang, int year) {
+    public void showNowStatus(Stage stage, Hero hero, NightGang gang, Inventory inventory, Game game) {
         System.out.println("·· ───── ·· ───── ··");
-        System.out.println("올해: ["+ year +"년]\n"); //Game 클래스의 yearCnt
+        System.out.println("올해: ["+ game.getYear() +"년]\n"); //Game 클래스의 yearCnt
         System.out.println("계급: [" + gang.getGangRank() +"]");
         System.out.println("신뢰도: [" + gang.getCredibility() +"]");
         System.out.println("자산: [" + hero.getMoney() + "]");
@@ -43,6 +45,10 @@ public class Status {
         System.out.printf("조직원 수: [%d / %d]\n", gang.getGangCnt(), gang.getFullGangCnt());
         System.out.printf("현재 스테이지 : [%s]\n", stage.getStageName());
         System.out.printf("적대 페거리 : [%s]\n",stage.getEnemyNowName());
+        System.out.println("\n뒤로가기 (-1)");
+        String s = input.nextLine();
+        if (s.equals("-1"))
+            game.actChoice(hero, gang, this, stage, inventory);
 
 
     }

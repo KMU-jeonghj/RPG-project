@@ -1,5 +1,6 @@
 package RPG_project.test;
 
+import RPG_project.Game;
 import RPG_project.character.*;
 import RPG_project.character.enemy.*;
 import RPG_project.event.Text;
@@ -18,7 +19,8 @@ public class HeroTest {
         Inventory inven = new Inventory();
         Stage stage = new Stage();
         Text text = new Text();
-        stat.showNowStatus(stage, hero, nightGang, 1980);
+        Game game = new Game();
+        stat.showNowStatus(stage, hero, nightGang, inven, game);
         //nightGang.nightChoice(stage, hero, e1, e2, stat, inven, text);
 
     }
