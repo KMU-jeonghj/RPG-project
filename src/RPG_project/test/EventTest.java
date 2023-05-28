@@ -24,15 +24,15 @@ public class EventTest {
 
 //        beep.playSong();
 
-        //event.eventSong(hero);
+        event.eventSong(hero);
 
 //        text.printTextRand(text.getChatScript(), text.getSpeaker1());
 
         //event.eventWar(hero, nightGang);
 
-        gn.debate(hero, nightGang);
-        gangneung.debate(hero, nightGang);
-        jangeogui.debate(hero, nightGang);
+//        gn.debate(hero, nightGang);
+//        gangneung.debate(hero, nightGang);
+//        jangeogui.debate(hero, nightGang);
 
 
 

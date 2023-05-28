@@ -11,6 +11,11 @@ public class NightGang extends Gangster{
     Scanner input = new Scanner(System.in);
     Random rand = new Random();
     private double heroAttacked = 0.3;
+    private double recoverey = 1.0; //조직원 회복률
+
+    public boolean isDefaultRecovery() {
+        return (recoverey == 1.0);
+    }
 
 
     //필드멤버
@@ -55,6 +60,14 @@ public class NightGang extends Gangster{
         this.credibility -= credibility;
         if (this.credibility < 0) this.credibility = 0;
     }
+
+    public void setRecoverey(double recoverey) {
+        this.recoverey = recoverey;
+    }
+
+    public void initRecovery() {
+        this.recoverey = 1.0;
+    }
     //----------------------------------------------------------
 
     //접근자
@@ -74,6 +87,10 @@ public class NightGang extends Gangster{
 
     public Enemy[] getEnemyArr() {
         return enemyArr;
+    }
+
+    public double getRecoverey() {
+        return recoverey;
     }
 
     //-----------------------------------------------------------

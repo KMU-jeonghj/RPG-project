@@ -101,7 +101,10 @@ public class Gangneung extends Enemy implements NegoEnemy{
             gainResist(salary.getSalesPower());
         }
 
-        if (this.resist == 0)  {
+        double rate = (double) (this.resist / 100); //거절 확률
+        double randNum = rand.nextDouble(); // 랜덤 생성
+
+        if (randNum > rate)  {
             System.out.printf("%s의 두목: ... 잘 부탁하네...\n", this.name);
             input.nextLine();
             System.out.println("회유에 성공했다!");
