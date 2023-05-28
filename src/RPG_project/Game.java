@@ -112,7 +112,7 @@ public class Game {
 
         System.out.println("주인공이 속한 패거리의 이름을 입력해 주세요\n");
         name = input.nextLine();
-        nightGang = new NightGang(name, 50, 30, 30);
+        nightGang = new NightGang(name, 30, 30, 30);
 
         //턴 시작
         while(this.year <= 2023) {
@@ -127,6 +127,8 @@ public class Game {
             //밤 조직활동까지 마치고 탈출
 
             this.year++;
+            nightGang.recoverGang(); //조직원 회복
+            nightGang.initRecovery();//회복 가중치 초기화
         }
 
     }

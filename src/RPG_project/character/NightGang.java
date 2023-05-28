@@ -12,10 +12,13 @@ public class NightGang extends Gangster{
     Scanner input = new Scanner(System.in);
     Random rand = new Random();
     private double heroAttacked = 0.3;
-    private double recoverey = 1.0; //조직원 회복률
+    private double recovereyWeight = 1.0; //조직원 회복률
 
-    public boolean isDefaultRecovery() {
-        return (recoverey == 1.0);
+    //recovery -> fullGangCnt/5
+    private int recovery = this.fullGangCnt/4; //매턴마다 회복되는 조직원량
+
+    public boolean isDefaultRecoveryWeight() {
+        return (recovereyWeight == 1.0);
     }
 
 
@@ -29,6 +32,8 @@ public class NightGang extends Gangster{
     private Enemy[] enemyArr;//싸울 적을 저장할 배열, 조건을 만족하면 다음 적과 싸울 수 있다.
 
     private int credibility;
+
+    private int lostGang = this.fullGangCnt = this.gangCnt;
 
     private boolean avoid = false; //회피 플래그 변수
     private boolean butcherAvoid = false;
@@ -48,6 +53,9 @@ public class NightGang extends Gangster{
     //---------------------------------------------------------
 
 
+    public void setRecovery(int recovery) {
+        this.recovery = recovery;
+    }
 
     public void setCredibility(int credibility) {
         this.credibility = credibility;
@@ -62,12 +70,12 @@ public class NightGang extends Gangster{
         if (this.credibility < 0) this.credibility = 0;
     }
 
-    public void setRecoverey(double recoverey) {
-        this.recoverey = recoverey;
+    public void setRecovereyWeight(double recovereyWeight) {
+        this.recovereyWeight = recovereyWeight;
     }
 
     public void initRecovery() {
-        this.recoverey = 1.0;
+        this.recovereyWeight = 1.0;
     }
 
     public void plusRankPtr() {
@@ -77,6 +85,12 @@ public class NightGang extends Gangster{
         else {
             this.rankPtr++;
         }
+    }
+
+    public void recoverGang() {
+        this.gangCnt += (int)(this.recovereyWeight * this.recovery); //가중치 곱해서 증가
+        if (this.gangCnt > this.fullGangCnt) this.gangCnt = this.fullGangCnt;
+
     }
     //----------------------------------------------------------
 
@@ -99,10 +113,13 @@ public class NightGang extends Gangster{
         return enemyArr;
     }
 
-    public double getRecoverey() {
-        return recoverey;
+    public double getRecovereyWeight() {
+        return recovereyWeight;
     }
 
+    public int getRecovery() {
+        return recovery;
+    }
     //-----------------------------------------------------------
 
     public void rankUp(Hero hero) {
@@ -197,6 +214,8 @@ public class NightGang extends Gangster{
         }
     }
 
+
+
     public void nightChoice(Stage stage, Hero hero, Gangster g1, Gangster g2, Status stat, Inventory inventory, Text text, Game game) {
         int nightTurn = 1;
         System.out.println("밤이 되어 조직으로 돌아왔습니다.");
@@ -215,7 +234,7 @@ public class NightGang extends Gangster{
                 case "3" -> chat(text);
                 case "4" -> {
                     sleep(hero);
-                    break;
+                    nightTurn = 4; //종료조건
                 }
                 //case "5" -> game.actChoice();
                 default -> {
@@ -235,16 +254,20 @@ public class NightGang extends Gangster{
 
     public void takeMoney(Hero hero) { //수금하기
         int money = (int)(this.gangCnt * 1.5);
+        System.out.printf("수금 완료\n오늘은 치킨이닭!\n돈 : %d(+%d)\n", hero.getMoney(), money);
         hero.gainMoney(money);
     }
 
     public void chat(Text text) { //잡담
         text.printTextRand(text.getChatScript(), text.getSpeaker1());
+        System.out.printf("신뢰도가 증가했다!\n 신뢰도: %d(+10)\n", this.credibility);
         gainCredibility(10); //신뢰도 증가
+
     }
 
     public void sleep(Hero hero) {
-        hero.gainMoney(50);
+        System.out.printf("%s는 잠을 잤다!\nHP : %d(+50)  MP : %d(+40)\n",hero.getName(), hero.getHp(), hero.getJobNow().getMp());
+        hero.gainHp(50);
         hero.getJobNow().gainMp(40);
     } //잠자기
 }
