@@ -18,7 +18,7 @@ public class GameTest {
         Inventory inventory = new Inventory();
         Stage stage = new Stage();
 
-        game.actChoice(hero, nightGang, status, stage, inventory);
+        game.actChoice(hero, nightGang, stage, inventory);
         //game.toggleNight();
         //game.actChoice(hero, nightGang, status, stage, inventory);
 

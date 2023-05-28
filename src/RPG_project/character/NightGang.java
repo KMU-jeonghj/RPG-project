@@ -1,6 +1,5 @@
 package RPG_project.character;
 
-import RPG_project.Game;
 import RPG_project.character.enemy.*;
 import RPG_project.event.*;
 import RPG_project.item.*;
@@ -216,7 +215,7 @@ public class NightGang extends Gangster{
 
 
 
-    public void nightChoice(Stage stage, Hero hero, Gangster g1, Gangster g2, Status stat, Inventory inventory, Text text, Game game) {
+    public void nightChoice(Stage stage, Hero hero, Gangster g1, Gangster g2, Inventory inventory, Text text) {
         int nightTurn = 1;
         System.out.println("밤이 되어 조직으로 돌아왔습니다.");
         while (nightTurn < 4) {
@@ -229,7 +228,7 @@ public class NightGang extends Gangster{
 
             String s = input.nextLine();
             switch (s) {
-                case "1" -> fight(stage, hero, g1, g2, stat, inventory);
+                case "1" -> fight(stage, hero, g1, g2, inventory);
                 case "2" -> takeMoney(hero);
                 case "3" -> chat(text);
                 case "4" -> {
@@ -248,8 +247,8 @@ public class NightGang extends Gangster{
 
     }
 
-    public void fight(Stage stage, Hero hero, Gangster g1, Gangster g2, Status stat, Inventory inventory) { //세력확장
-        stage.battle(hero, g1, g2, stat, inventory);
+    public void fight(Stage stage, Hero hero, Gangster g1, Gangster g2, Inventory inventory) { //세력확장
+        stage.battle(hero, g1, g2, inventory);
     }
 
     public void takeMoney(Hero hero) { //수금하기

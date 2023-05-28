@@ -181,17 +181,17 @@ public class Stage {
         }
     }
 
-    public void battle(Hero hero, Gangster enemy, Gangster nightGang, Status stat, Inventory inventory) {
+    public void battle(Hero hero, Gangster enemy, Gangster nightGang, Inventory inventory) {
 
         while(true) {
             boolean esc; //초기화
              esc = battleActChoice(hero, nightGang, inventory, false); // 1. 싸운다 2. 아이템 3. 설득(영입사원일시) 4.도망간다(큰 피해입고 생존, 신뢰도 감소)
             if (esc) break; // 도망치다 선택시 종료
-            stat.showBattleStat(hero, this.enemyNow, nightGang);
+            showBattleStat(hero, this.enemyNow, nightGang);
 
             System.out.printf("%s 공격\n", nightGang.getName());
             this.enemyNow.attacked(nightGang, hero);
-            stat.showBattleStat(hero, this.enemyNow, nightGang);
+            showBattleStat(hero, this.enemyNow, nightGang);
             if (this.enemyNow.isGangZero()) {
                 plusEi((NightGang) nightGang, hero); //다음 단계 패거리 포인팅
                 break;
@@ -199,7 +199,7 @@ public class Stage {
 
             System.out.printf("%s 공격\n", this.enemyNow.getName());
             nightGang.attacked(this.enemyNow, hero);
-            stat.showBattleStat(hero, this.enemyNow, nightGang);
+            showBattleStat(hero, this.enemyNow, nightGang);
             if (nightGang.isGangZero() || hero.isHpZero()) break;
         }
     }
@@ -245,5 +245,14 @@ public class Stage {
             }
         }
         return esc;
+    }
+
+    public void showBattleStat(Hero hero, Gangster enemy, Gangster nightGang) {
+        System.out.println("\n---------------------------------------------------\n");
+        System.out.printf("\t\t\t%s | GANG[%d / %d]\n",enemy.getName(), enemy.getGangCnt(), enemy.getFullGangCnt());
+        System.out.println("\n---------------------------------------------------\n");
+        System.out.printf("%s | GANG[%d / %d]\t%s | HP [%d / %d] MP [%d / %d]\n\n",
+                nightGang.getName(), nightGang.getGangCnt(), nightGang.getFullGangCnt(),
+                hero.getName(), hero.getHp(), hero.getFullHp(),hero.getJobNow().getMp(), hero.getJobNow().getFullMp());
     }
 }
