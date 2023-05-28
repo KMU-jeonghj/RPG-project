@@ -63,13 +63,13 @@ public class Jangeogui extends Enemy implements NegoEnemy{
         }
 
         //두번째 선택
-        System.out.printf("\n%s의 두목 : 우리는 현재 목포 최고의 패거리다!\n", this.name);
+        System.out.printf("\n%s의 두목 : 우리는 현재 호남 최고의 패거리다!\n", this.name);
         input.nextLine();
         System.out.printf("\n%s : 하지만..\n", hero.getName());
         input.nextLine();
 
         System.out.printf("\n%s의 회유 거절 확률 : %d%%\n", this.name, this.resist);
-        System.out.println("1. 우리는 목포 말고 전국 최고의 패거리가 될 거다."
+        System.out.println("1. 우리는 호남 말고 전국 최고의 패거리가 될 거다."
                 + "\n2. 아니다! 우리가 최고다!\n");
 
         line = input.nextInt();
