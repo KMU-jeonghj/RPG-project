@@ -104,6 +104,7 @@ public class Stage {
     private Enemy[] stageNow = stageArr[si]; //현재 싸우고 있는 스테이지
     private String stageName = stageNow[0].getName();
 
+    //객체배열 인덱스 한칸 옮기는 메소드, 중요!
     public void plusEi(NightGang nightGang, Hero hero) {
         if (isBoss() && this.si == 4) {
             System.out.println("all stages cleared");
@@ -113,20 +114,31 @@ public class Stage {
             this.ei = 1;
             this.si++;
             nightGang.rankUp(hero);
+            setStageNow();
+            setEnemyNow();
         }
-        else
+        else {
             this.ei++;
+            setStageNow();
+            setEnemyNow();
+        }
+
+        //재설정
+
     }
+
 
 
     
 
-    public void setEnemyNow(Enemy enemyNow) {
-        this.enemyNow = enemyNow;
+    public void setEnemyNow() {
+        this.enemyNow = this.stageArr[this.si][this.ei];
+        System.out.printf("다음 적패거리: %s\n", enemyNow.getName());
     }
 
-    public void setStageNow(Enemy[] stageNow) {
-        this.stageNow = stageNow;
+    public void setStageNow() {
+        this.stageNow = this.stageArr[this.si];
+        System.out.printf("다음 스테이지: %s\n", stageNow[0].getName());
     }
 
 
