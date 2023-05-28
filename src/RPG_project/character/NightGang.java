@@ -1,5 +1,6 @@
 package RPG_project.character;
 
+import RPG_project.Game;
 import RPG_project.character.enemy.*;
 import RPG_project.event.*;
 import RPG_project.item.*;
@@ -20,8 +21,10 @@ public class NightGang extends Gangster{
 
     //필드멤버
     //-----------------------------------------------------------------
-    private String gangRank;
+
     private String[] rankArr = {"막내", "행동대장", "간부", "부두목", "두목"};
+    private int rankPtr = 0;
+    private String gangRank = rankArr[rankPtr];
 
     private Enemy[] enemyArr;//싸울 적을 저장할 배열, 조건을 만족하면 다음 적과 싸울 수 있다.
 
@@ -38,16 +41,13 @@ public class NightGang extends Gangster{
         this.gangCnt = this.fullGangCnt = gangCnt;
         this.power = power;
         this.def = def;
-        this.gangRank = this.rankArr[0];//막내
     }
     //------------------------------------------------------------
 
     //설정자
     //---------------------------------------------------------
 
-    public void setGangRank(String gangRank) {
-        this.gangRank = gangRank;
-    }
+
 
     public void setCredibility(int credibility) {
         this.credibility = credibility;
@@ -68,6 +68,15 @@ public class NightGang extends Gangster{
 
     public void initRecovery() {
         this.recoverey = 1.0;
+    }
+
+    public void plusRankPtr() {
+        if (this.rankPtr == 4) {
+            System.out.println("최고계급");
+        }
+        else {
+            this.rankPtr++;
+        }
     }
     //----------------------------------------------------------
 
@@ -95,6 +104,11 @@ public class NightGang extends Gangster{
     }
 
     //-----------------------------------------------------------
+
+    public void rankUp(Hero hero) {
+        plusRankPtr();
+        System.out.printf("%s는 %s로 승격했다!!\n", hero.getName(), this.getGangRank());
+    }
 
     public int getSkill(Hero hero) {
         int s = hero.getJobNow().skill();
@@ -183,24 +197,36 @@ public class NightGang extends Gangster{
         }
     }
 
-    public void nightChoice(Stage stage, Hero hero, Gangster g1, Gangster g2, Status stat, Inventory inventory, Text text) {
-        System.out.println("\n행동을 선택하세요!\n");
-        System.out.println("\t1. 세력확장");
-        System.out.println("\t2. 수금");
-        System.out.println("\t3. 잡담하기");
-        System.out.println("\t4. 잠자기\n");
+    public void nightChoice(Stage stage, Hero hero, Gangster g1, Gangster g2, Status stat, Inventory inventory, Text text, Game game) {
+        int nightTurn = 1;
+        System.out.println("밤이 되어 조직으로 돌아왔습니다.");
+        while (nightTurn < 4) {
+            System.out.printf("\n행동을 선택하세요!\n%d 턴째\n\n", nightTurn);
+            System.out.println("\t1. 세력확장");
+            System.out.println("\t2. 수금");
+            System.out.println("\t3. 잡담하기");
+            System.out.println("\t4. 잠자기\n");
+            //System.out.println("\t5. 뒤로가기\n");
 
-        String s = input.nextLine();
-        switch (s) {
-            case "1" -> fight(stage, hero, g1, g2, stat, inventory);
-            case "2" -> takeMoney(hero);
-            case "3" -> chat(text);
-            case "4" -> sleep(hero);
-            default -> {
-                System.out.println("올바른 값을 입력해 주세요.");
-                nightChoice(stage, hero, g1, g2, stat, inventory, text);
+            String s = input.nextLine();
+            switch (s) {
+                case "1" -> fight(stage, hero, g1, g2, stat, inventory);
+                case "2" -> takeMoney(hero);
+                case "3" -> chat(text);
+                case "4" -> {
+                    sleep(hero);
+                    break;
+                }
+                //case "5" -> game.actChoice();
+                default -> {
+                    System.out.println("올바른 값을 입력해 주세요.");
+                    nightTurn--;
+                }
             }
+            nightTurn++;
         }
+
+
     }
 
     public void fight(Stage stage, Hero hero, Gangster g1, Gangster g2, Status stat, Inventory inventory) { //세력확장
@@ -219,5 +245,6 @@ public class NightGang extends Gangster{
 
     public void sleep(Hero hero) {
         hero.gainMoney(50);
+        hero.getJobNow().gainMp(40);
     } //잠자기
 }

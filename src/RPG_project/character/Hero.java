@@ -153,6 +153,7 @@ public class Hero {
 
     public void workDay() {
         int workCnt = 0;
+        System.out.println("좋은 아침!\n낮 동안 부업활동을 실시합니다.");
         while (workCnt != 2) {
             getJobNow().work(this);
             workCnt++;
