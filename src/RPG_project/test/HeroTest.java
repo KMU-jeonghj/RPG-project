@@ -20,7 +20,7 @@ public class HeroTest {
         Stage stage = new Stage();
         Text text = new Text();
         Game game = new Game();
-        stat.showNowStatus(stage, hero, nightGang, inven, game);
+        game.showNowStatus(stage, hero, nightGang, inven);
         //nightGang.nightChoice(stage, hero, e1, e2, stat, inven, text);
 
     }

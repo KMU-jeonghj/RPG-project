@@ -28,7 +28,7 @@ public class BattleTest {
         hero.setJobNow(actor);
         //salary.setMp(25);
 
-        stage.battle(hero, e1, ng, stat, inventory);
+        stage.battle(hero, e1, ng, inventory);
 
         //salary.work(hero);
         //salary.skill();

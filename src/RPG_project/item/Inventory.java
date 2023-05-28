@@ -58,7 +58,7 @@ public class Inventory {
                 int no = input.nextInt();
                 if (no == -1) //뒤로가기
                     break;
-                if (having[no]) {
+                if (no<=5 && having[no]) {
                     Item i = itemList.get(no-1);
                     applyItem(i, hero, nightGang); //아이템 효과 적용
                     i.loseCnt(1); //수량 감소
@@ -109,7 +109,7 @@ public class Inventory {
         }
     }
 
-    public void itemChoice(Shop shop, Hero hero, NightGang nightGang, Status status, Stage stage, Game game) {
+    public void itemChoice(Shop shop, Hero hero, NightGang nightGang, Stage stage, Game game) {
         System.out.println("\n무엇을 하시겠습니까?\n");
         System.out.println("\t1. 종합쇼핑몰 방문");
         System.out.println("\t2. 인벤토리 보기");
@@ -120,16 +120,16 @@ public class Inventory {
         switch(s) {
             case "1" -> {
                 goShop(shop, hero);
-                itemChoice(shop, hero, nightGang, status, stage, game);
+                itemChoice(shop, hero, nightGang,  stage, game);
             }
             case "2" -> {
                 useItem(hero, nightGang);
-                itemChoice(shop, hero, nightGang, status, stage, game);
+                itemChoice(shop, hero, nightGang, stage, game);
             }
-            case "3" -> game.actChoice(hero, nightGang, status, stage, this); //뒤로가기
+            case "3" -> game.actChoice(hero, nightGang,  stage, this); //뒤로가기
             default ->  {
                 System.out.println("올바른 값을 입력해 주세요");
-                itemChoice(shop, hero, nightGang, status, stage, game);
+                itemChoice(shop, hero, nightGang,  stage, game);
             }
         }
     }
