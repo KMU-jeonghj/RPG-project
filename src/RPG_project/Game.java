@@ -127,7 +127,7 @@ public class Game {
 
             this.year++;
             nightGang.recoverGang(); //조직원 회복
-            nightGang.initRecovery();//회복 가중치 초기화
+            nightGang.initRecoveryWeight();//회복 가중치 초기화
         }
 
     }

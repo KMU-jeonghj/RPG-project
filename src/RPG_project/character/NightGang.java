@@ -14,7 +14,7 @@ public class NightGang extends Gangster{
     private double recovereyWeight = 1.0; //조직원 회복률
 
     //recovery -> fullGangCnt/5
-    private int recovery = this.fullGangCnt/4; //매턴마다 회복되는 조직원량
+    private int recovery; //매턴마다 회복되는 조직원량
 
     public boolean isDefaultRecoveryWeight() {
         return (recovereyWeight == 1.0);
@@ -45,6 +45,7 @@ public class NightGang extends Gangster{
         this.gangCnt = this.fullGangCnt = gangCnt;
         this.power = power;
         this.def = def;
+        this.recovery = this.fullGangCnt/4;
     }
     //------------------------------------------------------------
 
@@ -73,7 +74,7 @@ public class NightGang extends Gangster{
         this.recovereyWeight = recovereyWeight;
     }
 
-    public void initRecovery() {
+    public void initRecoveryWeight() {
         this.recovereyWeight = 1.0;
     }
 
@@ -87,9 +88,22 @@ public class NightGang extends Gangster{
     }
 
     public void recoverGang() {
-        this.gangCnt += (int)(this.recovereyWeight * this.recovery); //가중치 곱해서 증가
+        int inc = (int)(this.recovereyWeight * this.recovery);
+        if (this.gangCnt + inc > this.fullGangCnt) {
+            inc = (this.gangCnt + inc) - this.fullGangCnt;
+        }
+        System.out.printf("조직원들이 회복했습니다. %d(+%d)/%d\n", this.gangCnt, inc, this.fullGangCnt);
+        this.gangCnt += inc;//가중치 곱해서 증가
         if (this.gangCnt > this.fullGangCnt) this.gangCnt = this.fullGangCnt;
 
+    }
+    public void initRecovery() {
+        this.recovery = this.fullGangCnt/4;
+    }
+
+    public void gainFullGangCnt(int fullGangCnt) {
+        super.gainFullGangCnt(fullGangCnt);
+        initRecovery();
     }
     //----------------------------------------------------------
 
@@ -140,7 +154,6 @@ public class NightGang extends Gangster{
 
         double damage = (int)(power * getGangRate()) + skill;
         return damage;
-
     }
 
     public void acceptDamage(Gangster gang, Hero hero, double damage) {

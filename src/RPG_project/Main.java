@@ -7,6 +7,5 @@ public class Main {
     public static void main(String[] args) throws LineUnavailableException, InterruptedException {
         Game game = new Game();
         game.process();
-
     }
 }
