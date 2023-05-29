@@ -35,8 +35,8 @@ public class Game {
     }
 
     public void isWhen() {
-        if (isNight) System.out.println("밤입니다.");
-        else System.out.println("낮입니다.");
+        if (isNight) System.out.println("\n밤입니다.");
+        else System.out.println("\n낮입니다.");
     }
 
     public int getYear() {
@@ -44,9 +44,9 @@ public class Game {
     }
 
     public void actChoice(Hero hero, NightGang nightGang,  Stage stage, Inventory inventory) {
-        if (isNight) System.out.println("[밤]");
+        if (isNight) System.out.println("\n[밤]");
         else System.out.println("[낮]");
-        System.out.println("\n무엇을 하시겠습니까?\n");
+        System.out.println("무엇을 하시겠습니까?\n");
         System.out.println("\t1. 현재상태 출력");
         System.out.println("\t2. 아이템 관련 행동");
         System.out.println("\t3. 출근하기");
@@ -112,9 +112,10 @@ public class Game {
         String name = input.nextLine();
         hero = new Hero(name);
 
-        System.out.println("주인공이 속한 패거리의 이름을 입력해 주세요\n");
+        System.out.println("주인공이 속한 패거리의 이름을 입력해 주세요");
         name = input.nextLine();
-        nightGang = new NightGang(name, 30, 30, 30);
+        nightGang = new NightGang(name);
+        System.out.println("\n게임이 시작됩니다\n");
 
         //턴 시작
         while(this.year <= 2023) {
@@ -124,12 +125,14 @@ public class Game {
 
             event.switchEvent(this.year, hero, nightGang); //이벤트 체크
 
+            System.out.println();
+
             //행동 시작
             actChoice(hero, nightGang, stage, inventory);
             //밤 조직활동까지 마치고 탈출
 
             this.year++;
-            recoverGangs();
+            recoverGangs(); //조직원 회복, 우리편 이랑 상대편
         }
 
     }

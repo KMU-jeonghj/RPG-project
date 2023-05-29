@@ -14,7 +14,7 @@ public class Salary extends Job{
         super();
         this.jobName = "영업사원";
         //this.jobYear = 1;
-        this.casePower = 30;
+        this.casePower = 5;
         this.salesPower = 5;
     }
     //-----------------------------------------------------
@@ -56,7 +56,7 @@ public class Salary extends Job{
         int hpMinus = 10;
         System.out.println("\n서류를 작성합니다\n");//피로도에 따라 다른 메세지 출력 기능도 생각해보기
 
-        int result = (int) (30 * hero.getTiredrate());
+        int result = (int) (15 * hero.getTiredrate());
         int wage = (int) (3000 * hero.getTiredrate());
         System.out.printf("\n업무 완료\n 서류가방 무게 : %d(+%d)\n 월급 : %d(+%d)\n",
                 casePower, result, hero.getMoney(), wage);

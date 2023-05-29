@@ -6,8 +6,8 @@ public class GyeonggiSouth extends Enemy{
     Random rand = new Random();
 
     public GyeonggiSouth() {
-        super("경기도 남부 연합", 370 , 300, 360);
-        this.credReward = 380; this.moneyReward = 400;
+        super("경기도 남부 연합", 370 , 330);
+        this.credReward = 380; this.moneyReward = 40000;
     }
 
     @Override

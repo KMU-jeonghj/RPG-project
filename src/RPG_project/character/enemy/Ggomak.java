@@ -7,9 +7,9 @@ public class Ggomak extends Enemy{
     Random rand = new Random();
 
     public Ggomak() {
-        super("꼬막무침",65, 50, 70);
+        super("꼬막무침",65, 60);
         this.credReward = 95;
-        this.moneyReward = 160;
+        this.moneyReward = 16000;
 
     }
     @Override

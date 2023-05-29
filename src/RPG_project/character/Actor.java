@@ -14,7 +14,7 @@ public class Actor extends Job{
         super();
         this.jobName = "연기파 배우";
         //this.jobYear = 1;
-        this.stuntPower = 30;
+        this.stuntPower = 15;
         this.actingPower = 5;
     }
     //-----------------------------------------------------

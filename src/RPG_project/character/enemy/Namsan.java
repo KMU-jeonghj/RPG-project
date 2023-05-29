@@ -9,7 +9,7 @@ public class Namsan extends Enemy implements BossEnemy{
     Scanner input = new Scanner(System.in);
 
     public Namsan() {
-        super("남산", 700, 500, 600); //이름, 조직원수, 공격력, 방어력
+        super("남산", 700, 550); //이름, 조직원수, 공격력, 방어력
         this.credReward = 180;
         this.moneyReward = 999_999_999;
     }

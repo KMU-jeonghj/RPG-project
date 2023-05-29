@@ -11,10 +11,10 @@ public class HeroTest {
         Hero hero = new Hero("hero");
         Salary salary = new Salary();
         hero.setJobNow(salary);
-        NightGang nightGang = new NightGang("nightGang", 30, 30, 30);
-        Enemy e1 = new Enemy("enemy1", 100, 40, 10);
-        Enemy e2 = new Enemy("enemy2", 100, 30, 10);
-        Enemy e3  = new Enemy("e3", 500, 20, 20);
+        NightGang nightGang = new NightGang("nightGang");
+        Enemy e1 = new Enemy("enemy1", 100, 25);
+        Enemy e2 = new Enemy("enemy2", 100, 20);
+        Enemy e3  = new Enemy("e3", 500, 20);
         Status stat = new Status();
         Inventory inven = new Inventory();
         Stage stage = new Stage();

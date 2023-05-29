@@ -10,7 +10,7 @@ import RPG_project.item.*;
 public class ItemTest {
     public static void main(String[] args) {
         Hero hero = new Hero("hero");
-        NightGang nightGang = new NightGang("nightGang", 100, 100, 100);
+        NightGang nightGang = new NightGang("nightGang");
         Shop shop = new Shop();
         Inventory inventory = new Inventory();
         Game game = new Game();

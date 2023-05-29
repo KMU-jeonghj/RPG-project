@@ -14,9 +14,9 @@ public class Jangeogui extends Enemy implements NegoEnemy, BossEnemy{
 
 
     public Jangeogui() {
-        super("장어구이", 70 , 70, 55);
+        super("장어구이", 70 , 65);
         this.credReward = 100;
-        this.moneyReward = 180;
+        this.moneyReward = 18000;
         this.resist = 100;
     }
     @Override

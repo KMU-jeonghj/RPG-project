@@ -12,8 +12,8 @@ public class Gangneung extends Enemy implements NegoEnemy{
     Random rand = new Random();
 
     public Gangneung() {
-        super("강릉 바다뷰", 140 , 160, 110);
-        this.credReward = 170; this.moneyReward = 220;
+        super("강릉 바다뷰", 140 , 235);
+        this.credReward = 170; this.moneyReward = 22000;
         this.resist = 100;
     }
     @Override

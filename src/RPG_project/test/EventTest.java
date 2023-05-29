@@ -11,7 +11,7 @@ public class EventTest {
         Salary salary = new Salary();
         Hero hero = new Hero("hero");
         hero.setJobNow(salary);
-        NightGang nightGang = new NightGang("nightGang", 100, 100, 100);
+        NightGang nightGang = new NightGang("nightGang");
         Event event = new Event();
         Beep beep = new Beep();
         Text text = new Text();

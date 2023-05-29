@@ -134,7 +134,7 @@ public class Hero {
     }
 
     public void choiceJob() { //직업선택 메소드
-        System.out.println("직업을 선택하세요");
+        System.out.println("올해에는 무슨 직업으로 살아볼까?");
         System.out.println("1. 영업사원");
         System.out.println("2. 정육점사장");
         System.out.println("3. 삼류배우");
