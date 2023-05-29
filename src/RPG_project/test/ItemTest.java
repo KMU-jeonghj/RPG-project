@@ -1,7 +1,10 @@
 package RPG_project.test;
 
+import RPG_project.Game;
 import RPG_project.character.Hero;
 import RPG_project.character.NightGang;
+import RPG_project.character.Salary;
+import RPG_project.character.Stage;
 import RPG_project.item.*;
 
 public class ItemTest {
@@ -10,26 +13,18 @@ public class ItemTest {
         NightGang nightGang = new NightGang("nightGang", 100, 100, 100);
         Shop shop = new Shop();
         Inventory inventory = new Inventory();
+        Game game = new Game();
+        Stage stage = new Stage();
 //        int n = shop.inputInt();
 //        System.out.println(n);
         //Item i = shop.sellItem(hero);
+        Salary salary = new Salary();
+        hero.setJobNow(salary);
+        hero.setMoney(999999999);
+        game.actChoice(hero, nightGang, stage, inventory);
 
-        inventory.addItem(shop.getHutgae());
-        inventory.addItem(shop.getHutgae());
-        inventory.addItem(shop.getBacchus());
-        inventory.printInventory();
-        System.out.println();
-        inventory.sortList();
-        inventory.printInventory();
-        System.out.println();
-        System.out.println(shop.getHutgae().getNo());
-        System.out.println(inventory.getItemList().get(1).getName());
-        Item tmp = inventory.getItemList().get(1);
-        tmp.setCnt(100);
-        System.out.println(shop.getHutgae().getCnt());
-        inventory.printInventory();
-        inventory.useItem(hero, nightGang);
-        inventory.printInventory();
+
+
 
 
 
