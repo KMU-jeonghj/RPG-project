@@ -28,6 +28,11 @@ public class BattleTest {
         hero.setJobNow(actor);
         //salary.setMp(25);
 
+        ng.setGangCnt(15);
+//        System.out.println(ng.getGangCnt());
+//        ng.recoverGang();
+//        System.out.println(ng.getGangCnt());
+
         stage.battle(hero, e1, ng, inventory);
 
         //salary.work(hero);

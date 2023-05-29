@@ -104,6 +104,9 @@ public class Game {
     }
 
     public void process() throws LineUnavailableException, InterruptedException {
+        text.manual();
+        System.out.println("\n");
+
         //시작 멘트, 주인공 이름, 갱 이름 입력
         System.out.println("주인공의 이름을 입력해 주세요");
         String name = input.nextLine();
@@ -126,10 +129,16 @@ public class Game {
             //밤 조직활동까지 마치고 탈출
 
             this.year++;
-            nightGang.recoverGang(); //조직원 회복
-            nightGang.initRecovery();//회복 가중치 초기화
+            recoverGangs();
         }
 
+    }
+
+    public void recoverGangs() {
+        nightGang.recoverGang(); //조직원 회복
+        nightGang.initRecoveryWeight();//회복 가중치 초기화
+
+        stage.getEnemyNow().recoverGang(); //적 패거리 회복
     }
 
     public void showNowStatus(Stage stage, Hero hero, NightGang gang, Inventory inventory) {

@@ -14,6 +14,7 @@ public class GameTest {
         Salary salary = new Salary();
         hero.setJobNow(salary);
         NightGang nightGang = new NightGang("nightGang", 100, 100, 100);
+        nightGang.setGangCnt(10);
         Status status = new Status();
         Inventory inventory = new Inventory();
         Stage stage = new Stage();

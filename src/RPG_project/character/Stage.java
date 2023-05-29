@@ -33,6 +33,7 @@ public class Stage {
     //수도권
     private GyeonggiSouth gyeonggiSouth = new GyeonggiSouth();
     private GyeonggiNorth gyeonggiNorth = new GyeonggiNorth();
+    private Namsan namsan = new Namsan();
 
 
     //적패거리 접근자들
@@ -82,6 +83,9 @@ public class Stage {
         return gyeonggiNorth;
     }
 
+    public Namsan getNamsan() {
+        return namsan;
+    }
     //--------------------------------------------------------------------
 
     private Enemy[] stageMokpo = {new Enemy("목포", 0, 0, 0),
@@ -91,7 +95,7 @@ public class Stage {
     private Enemy[] stageCountry = {new Enemy("지방권", 0, 0, 0),
     chungcheong, gangneung, gwanganri};
     private Enemy[] stageCapital = {new Enemy("수도권", 0,0, 0),
-    gyeonggiSouth, gyeonggiNorth};
+    gyeonggiSouth, gyeonggiNorth, namsan};
 
 
     private int ei = 1;
@@ -127,9 +131,6 @@ public class Stage {
 
     }
 
-
-
-    
 
     public void setEnemyNow() {
         this.enemyNow = this.stageArr[this.si][this.ei];
@@ -193,6 +194,11 @@ public class Stage {
         }
     }
 
+    public boolean isDown(Hero hero, NightGang nightGang) {
+        return(nightGang.isGangZero() || hero.isHpZero());
+    }
+
+    //1.세력확장 -> 1. 싸운다
     public void battle(Hero hero, Gangster enemy, Gangster nightGang, Inventory inventory) {
 
         while(true) {
@@ -206,13 +212,24 @@ public class Stage {
             showBattleStat(hero, this.enemyNow, nightGang);
             if (this.enemyNow.isGangZero()) {
                 plusEi((NightGang) nightGang, hero); //다음 단계 패거리 포인팅
+                if (this.enemyNow instanceof Namsan) {
+                    this.namsan.finalAfter(); //남산 파이널 대사
+                }
                 break;
             }
 
             System.out.printf("%s 공격\n", this.enemyNow.getName());
             nightGang.attacked(this.enemyNow, hero);
             showBattleStat(hero, this.enemyNow, nightGang);
-            if (nightGang.isGangZero() || hero.isHpZero()) break;
+            //주인공 측 쓰러짐
+            if (isDown(hero, (NightGang) nightGang)) {
+                if(nightGang.isGangZero())
+                    System.out.println("조직원이 전부 쓰러졌습니다..");
+                if(hero.isHpZero())
+                    System.out.printf("%s 는 쓰러졌습니다..\n", hero.getName());
+
+                break;
+            }
         }
     }
     
@@ -236,24 +253,31 @@ public class Stage {
 
         String s = input.nextLine(); //숫자가 아니라 문자열을 입력하는 경우 고려
         switch (s) {
-            case "1" -> esc = false; // 그대로 전투 진행
+            case "1" -> {
+                esc = false; // 그대로 전투 진행
+            }
             case "2" -> {
                 inventory.useItem(hero, (NightGang) nightGang);
-                battleActChoice(hero, nightGang, inventory, esc);//아이템 사용 후 다시 선택
+                //함수 값 esc에 할당해 주기
+                esc = battleActChoice(hero, nightGang, inventory, esc);//아이템 사용 후 다시 선택
             }
             case "3" -> checkNego(hero, nightGang, inventory); //회유 조건 체크
 
             case "4" -> {
                 esc = true;
+                //메세지 출력 추가
+                System.out.printf("HP : %d -> %d\n", hero.getHp(), (int)(hero.getHp()*0.7));
+                System.out.printf("돈 : %d -> %d\n", hero.getMoney(), (int)(hero.getMoney()*0.7));
+                System.out.printf("조직원 수 : %d -> %d\n", nightGang.getGangCnt(),(int) (nightGang.getGangCnt() * 0.7));
+                System.out.println("도망쳤습니다");
                 //피해입는 실행문 추가
                 hero.setHp((int)(hero.getHp() * 0.7));//hp 감소
-                hero.gainMoney((int) (hero.getMoney() * 0.7));// 돈 감소
+                hero.setMoney((int) (hero.getMoney() * 0.7));// 돈 감소
                 nightGang.setGangCnt((int) (nightGang.getGangCnt() * 0.7));// 조직원 감소
-
             } 
             default -> { //잘못 입력시
                 System.out.println("올바른 값을 입력해 주세요.");
-                battleActChoice(hero, nightGang, inventory, esc);//재귀 사용
+                esc = battleActChoice(hero, nightGang, inventory, esc);//재귀 사용
             }
         }
         return esc;
