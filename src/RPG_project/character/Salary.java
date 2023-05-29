@@ -68,8 +68,8 @@ public class Salary extends Job{
     public void meetClient(Hero hero) {
         int hpMinus = 15;
         System.out.println("\n거래처 직원을 설득하고 있습니다.\n");
-        int result = (int) (10 * hero.getTiredrate());
-        int wage = (int) (5000 * hero.getTiredrate());
+        int result = (int) (3 * hero.getTiredrate());
+        int wage = (int) (3300 * hero.getTiredrate());
         System.out.printf("\n업무 완료\n 영업능력 : %d(+%d)\n 월급 : %d(+%d)\n",
                 salesPower, result, hero.getMoney(), wage);
         System.out.printf("HP : %d(-%d)/%d\n",hero.getHp(), hpMinus, hero.getFullHp());

@@ -7,7 +7,7 @@ public class Gomtang extends Enemy implements BossEnemy {
     Random rand = new Random();
 
     public Gomtang() {
-        super("곰탕", 30, 30); //이름, 조직원수, 공격력, 방어력
+        super("곰탕", 50, 30); //이름, 조직원수, 공격력, 방어력
         this.credReward = 45;
         this.moneyReward = 10000;
     }

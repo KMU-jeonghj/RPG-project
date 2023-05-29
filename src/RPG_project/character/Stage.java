@@ -206,6 +206,7 @@ public class Stage {
             boolean esc; //초기화
              esc = battleActChoice(hero, nightGang, inventory, false); // 1. 싸운다 2. 아이템 3. 설득(영입사원일시) 4.도망간다(큰 피해입고 생존, 신뢰도 감소)
             if (esc) break; // 도망치다 선택시 종료
+            if (enemyNow.isGangZero()) break; //회유성공시
             showBattleStat(hero, this.enemyNow, nightGang);
 
             System.out.printf("%s 공격\n", nightGang.getName());
