@@ -13,9 +13,9 @@ public class GyeonggiNorth extends Enemy implements NegoEnemy{
 
 
     public GyeonggiNorth() {
-        super("경기도 북부 연합", 450, 400, 420);
+        super("경기도 북부 연합", 450, 410);
         this.credReward = 400;
-        this.moneyReward = 500;
+        this.moneyReward = 50000;
         this.resist = 100;
     }
 

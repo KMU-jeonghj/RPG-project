@@ -13,7 +13,7 @@ public class GameTest {
         Hero hero = new Hero("hero");
         Salary salary = new Salary();
         hero.setJobNow(salary);
-        NightGang nightGang = new NightGang("nightGang", 100, 100, 100);
+        NightGang nightGang = new NightGang("nightGang");
         nightGang.setGangCnt(10);
         Status status = new Status();
         Inventory inventory = new Inventory();

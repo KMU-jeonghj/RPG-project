@@ -7,8 +7,8 @@ public class Chungcheong extends Enemy{
     Random rand = new Random();
 
     public Chungcheong() {
-        super("충청도 아삭한 사과", 140 , 140, 120);
-        this.credReward = 180; this.moneyReward = 200;
+        super("충청도 아삭한 사과", 140 , 130);
+        this.credReward = 180; this.moneyReward = 20000;
     }
     @Override
     public int enemySkill() { //Enemy에 있는 enemySkill을 오버라이드

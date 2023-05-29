@@ -8,7 +8,7 @@ public class Gangster {
 
     protected int gangCnt, fullGangCnt, power, def;
 
-    protected double weight = (double)4/5;
+    protected int weight; //가중치
     //---------------------------------------
     //recovery 관련
     protected double recovereyWeight = 1.0; //조직원 회복률
@@ -132,7 +132,7 @@ public class Gangster {
 
     public double attack(Hero hero) { //NightGang에서 오버라이딩 (스킬 추가)
 
-        double damage = (this.power * getGangRate());
+        double damage = (this.weight * getGangRate());
         return damage;
     }
 
@@ -140,8 +140,8 @@ public class Gangster {
         double damage;
         double given = gang.attack(hero);
         System.out.printf("보낸 데미지 %.1f\n", given);
-        System.out.printf("방어 %.1f\n", (weight * def * getGangRate()));
-        damage = given - (weight * def * getGangRate());
+        System.out.printf("방어 %.1f\n", (0.8 * weight * getGangRate()));  //weight 이름 바꾸기!!
+        damage = given - (0.8 * weight * getGangRate());
 
         if (damage <= 0)  {
             damage = 0;

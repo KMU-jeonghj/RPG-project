@@ -25,10 +25,12 @@ public class NightGang extends Gangster{
     //-----------------------------------------------------------------
 
     private String[] rankArr = {"막내", "행동대장", "간부", "부두목", "두목"};
-    private int rankPtr = 0;
-    private String gangRank = rankArr[rankPtr];
+    private int rankPtr;
+    private String gangRank;
 
-    private Enemy[] enemyArr;//싸울 적을 저장할 배열, 조건을 만족하면 다음 적과 싸울 수 있다.
+    //스테이지 진입시 업그레이드되는 스탯, {fullGangCnt, weight}
+    private int[][] statValue = {null, {30, 20}, {60, 60}, {140, 130}, {370, 330}};
+    private int statPtr;
 
     private int credibility;
 
@@ -40,12 +42,18 @@ public class NightGang extends Gangster{
     //------------------------------------------------------------------
 
     //생성자
-    public NightGang(String name, int gangCnt, int power, int def) {
+    public NightGang(String name) {
         super(name);
-        this.gangCnt = this.fullGangCnt = gangCnt;
-        this.power = power;
-        this.def = def;
-        this.recovery = this.fullGangCnt/4;
+        this.statPtr = 1;
+        //조직원수
+        this.gangCnt = this.fullGangCnt = this.statValue[this.statPtr][0]; //스탯포인터가 가리키는 값으로 초기화
+        //회복률
+        this.recovery = this.fullGangCnt/3;
+        //공격, 방어 역할을 하는 가중치
+        this.weight = this.statValue[this.statPtr][1]; //스탯포인터가 가리키는 값으로 초기화
+
+        this.rankPtr = 0;
+        this.gangRank = this.rankArr[this.rankPtr]; //막내로 초기화
     }
     //------------------------------------------------------------
 
@@ -86,17 +94,40 @@ public class NightGang extends Gangster{
             this.rankPtr++;
         }
     }
+
+    public void initGangRank() {
+        this.gangRank = this.rankArr[this.rankPtr];
+    }
+
+    public void plusStatPtr() {
+        if (this.statPtr < 4)
+            this.statPtr++;
+    }
+
+    public void initStatValue() {
+        this.fullGangCnt = this.statValue[this.statPtr][0]; //스탯포인터가 가리키는 값으로 초기화
+        this.weight = this.statValue[this.statPtr][1]; //스탯포인터가 가리키는 값으로 초기화
+    }
+
+    public void upgradeStat() {
+        plusStatPtr();
+        initStatValue();
+    }
+
     @Override
     public void recoverGang() {
         int inc = (int)(this.recovereyWeight * this.recovery);
         if (this.gangCnt + inc > this.fullGangCnt) {
             inc -= ((this.gangCnt + inc) - this.fullGangCnt);
         }
-        System.out.printf("조직원들이 회복했습니다. %d(+%d)/%d\n", this.gangCnt, inc, this.fullGangCnt);
-        gainGangCnt(inc);//가중치 곱해서 증가
+        if (inc > 0) {
+            System.out.printf("조직원들이 회복했습니다. %d(+%d)/%d\n", this.gangCnt, inc, this.fullGangCnt);
+            gainGangCnt(inc);//가중치 곱해서 증가
+        }
+
     }
     public void initRecovery() {
-        this.recovery = this.fullGangCnt/4;
+        this.recovery = this.fullGangCnt/3;
     }
 
     public void gainFullGangCnt(int fullGangCnt) {
@@ -120,10 +151,6 @@ public class NightGang extends Gangster{
         return rankArr;
     }
 
-    public Enemy[] getEnemyArr() {
-        return enemyArr;
-    }
-
     public double getRecovereyWeight() {
         return recovereyWeight;
     }
@@ -135,6 +162,7 @@ public class NightGang extends Gangster{
 
     public void rankUp(Hero hero) {
         plusRankPtr();
+        initGangRank();
         System.out.printf("%s는 %s로 승격했다!!\n", hero.getName(), this.getGangRank());
     }
 
@@ -150,7 +178,7 @@ public class NightGang extends Gangster{
         if (skill == -2) actorAvoid = true;
         if (skill < 0) skill = 0;
 
-        double damage = (int)(power * getGangRate()) + skill;
+        double damage = (int)(weight * getGangRate()) + skill;
         return damage;
     }
 
@@ -182,8 +210,8 @@ public class NightGang extends Gangster{
         double damage;
         double given = gang.attack(hero);
         System.out.printf("보낸 데미지 %.1f\n", given);
-        System.out.printf("방어 %.1f\n", (weight * def * getGangRate()));
-        damage = given - (weight * def * getGangRate());
+        System.out.printf("방어 %.1f\n", (weight * 0.8 * getGangRate()));
+        damage = given - (weight * 0.8 * getGangRate());
 
         if (damage <= 0) damage = 0;
 
@@ -270,7 +298,7 @@ public class NightGang extends Gangster{
     }
 
     public void takeMoney(Hero hero) { //수금하기
-        int money = (int)(this.gangCnt * 10);
+        int money = (int)(this.gangCnt * 200);
         System.out.printf("수금 완료\n오늘은 치킨이닭!\n돈 : %d(+%d)\n", hero.getMoney(), money);
         hero.gainMoney(money);
     }

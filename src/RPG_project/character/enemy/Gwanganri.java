@@ -7,8 +7,8 @@ public class Gwanganri extends Enemy implements BossEnemy{
     Random rand = new Random();
 
     public Gwanganri() {
-        super("부산 광안리", 170 , 180, 100);
-        this.credReward = 200; this.moneyReward = 240;
+        super("부산 광안리", 170 , 140);
+        this.credReward = 200; this.moneyReward = 24000;
     }
     @Override
     public int enemySkill() { //Enemy에 있는 enemySkill을 오버라이드

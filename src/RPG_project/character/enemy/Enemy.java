@@ -14,11 +14,10 @@ public class Enemy extends Gangster {
     protected int resist; //설득도 변수, 100에서 0이되면 설득
     protected int gangReward;
 
-    public Enemy(String name, int gangCnt, int power, int def) {
+    public Enemy(String name, int gangCnt, int weight) {
         super(name);
         this.gangCnt = this.fullGangCnt = gangCnt;
-        this.power = power;
-        this.def = def;
+        this.weight = weight;
         this.gangReward = (int) (0.8 * this.fullGangCnt); // gangCnt 보상 초기화
         this.recovery = this.fullGangCnt/4;
     }
@@ -53,7 +52,7 @@ public class Enemy extends Gangster {
     @Override
     public double attack(Hero hero)
     {
-        double damage = (int)(power * getGangRate()) + enemySkill();
+        double damage = (int)(weight * getGangRate()) + enemySkill();
         return damage;//데미지 리턴
     }
 

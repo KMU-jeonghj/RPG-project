@@ -7,9 +7,9 @@ public class Ggwabaegi extends Enemy{
     Random rand = new Random();
 
     public Ggwabaegi() {
-        super("꽈배기",25, 30, 20); //이름, 조직원수, 공격력, 방어력
+        super("꽈배기",35, 25); //이름, 조직원수, 공격력, 방어력
         this.credReward = 45;
-        this.moneyReward = 100;
+        this.moneyReward = 8100;
     }
     @Override
     public int enemySkill() { //Enemy에 있는 enemySkill을 오버라이드

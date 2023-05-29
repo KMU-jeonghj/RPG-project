@@ -7,9 +7,9 @@ public class Jeonjubibim extends Enemy{
     Random rand = new Random();
 
     public Jeonjubibim() {
-        super("전주비빔", 60, 55, 65); //이름, 조직원수, 공격력, 방어력
+        super("전주비빔", 60, 60); //이름, 조직원수, 공격력, 방어력
         this.credReward = 90;
-        this.moneyReward = 150;
+        this.moneyReward = 15000;
     }
     @Override
     public int enemySkill() {

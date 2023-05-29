@@ -88,13 +88,13 @@ public class Stage {
     }
     //--------------------------------------------------------------------
 
-    private Enemy[] stageMokpo = {new Enemy("목포", 0, 0, 0),
+    private Enemy[] stageMokpo = {new Enemy("목포", 0, 0),
             sebalnakji, ggwabaegi, gomtang};
-    private Enemy[] stageJeonra = {new Enemy("전라도", 0, 0, 0),
+    private Enemy[] stageJeonra = {new Enemy("전라도", 0, 0),
         jeonjubibim, ggomak, jangeogui};
-    private Enemy[] stageCountry = {new Enemy("지방권", 0, 0, 0),
+    private Enemy[] stageCountry = {new Enemy("지방권", 0, 0),
     chungcheong, gangneung, gwanganri};
-    private Enemy[] stageCapital = {new Enemy("수도권", 0,0, 0),
+    private Enemy[] stageCapital = {new Enemy("수도권", 0,0),
     gyeonggiSouth, gyeonggiNorth, namsan};
 
 
@@ -118,6 +118,7 @@ public class Stage {
             this.ei = 1;
             this.si++;
             nightGang.rankUp(hero);
+            nightGang.upgradeStat();
             setStageNow();
             setEnemyNow();
         }
