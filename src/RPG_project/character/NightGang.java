@@ -112,6 +112,7 @@ public class NightGang extends Gangster{
     public void upgradeStat() {
         plusStatPtr();
         initStatValue();
+        setGangCnt(this.fullGangCnt);
     }
 
     @Override
