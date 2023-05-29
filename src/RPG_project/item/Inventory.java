@@ -12,18 +12,21 @@ public class Inventory {
     Scanner input = new Scanner(System.in);
     //동적 배열에 저장, 번호로 정렬해서 출력
     private ArrayList<Item> itemList = new ArrayList<>();
+
+    Shop shop = new Shop();
+    //아이템 배열로 변경
+    private Item[] itemArr = {null, shop.bacchus, shop.hutgae, shop.bokbunja, shop.shinshin, shop.snakeWine};
     private boolean[] having = {false, false, false, false, false, false}; //아이템 소유 여부
 
     public ArrayList<Item> getItemList() {
         return itemList;
     }
 
-    public void addItem(Item item) {
-        item.gainCnt(1);//수량 증가
-        if (!itemList.contains(item)) {//첫 추가 일시
-            having[item.getNo()] = true; //체크
-            itemList.add(item);
-        }
+    public void addItem(int no) {
+        //첫 추가 일시
+        if (!having[no])
+            having[no] = true;
+        itemArr[no].gainCnt(1);//수량 증가
     }
 
     public void sortList() { //아이템 번호로 정렬
@@ -33,19 +36,23 @@ public class Inventory {
 
 
     public void printInventory() { //인벤토리 출력
-        if (itemList.isEmpty())
-            System.out.println("인벤토리가 비었습니다");
-        else {
-            for (Item i : itemList)
-                System.out.printf("no. %d\n %s | %d 개\n", i.getNo(), i.getName(), i.getCnt());
+        int cnt = 0;
+        for (int i = 1; i <= 5; i++) {
+            if (having[i]) {
+                Item item = itemArr[i];
+                System.out.printf("no. %d\n %s | %d 개\n", item.getNo(), item.getName(), item.getCnt());
+                cnt++;
+            }
         }
+        if (cnt == 0)
+            System.out.println("인벤토리가 비었습니다");
     }
 
     public void goShop(Shop shop, Hero hero) {
         while (true){
-            Item item = shop.sellItem(hero);
-            if (item == null) break; //상점 종료
-            addItem(item); //아이템 추가
+            int no = shop.sellItem(hero);
+            if (no == 0) break; //상점 종료
+            addItem(no); //아이템 추가
         }
     }
 
@@ -59,7 +66,7 @@ public class Inventory {
                 if (no == -1) //뒤로가기
                     break;
                 if (no<=5 && having[no]) {
-                    Item i = itemList.get(no-1);
+                    Item i = itemArr[no];
                     applyItem(i, hero, nightGang); //아이템 효과 적용
                     i.loseCnt(1); //수량 감소
                     }
