@@ -212,7 +212,14 @@ public class Stage {
             System.out.printf("%s 공격\n", this.enemyNow.getName());
             nightGang.attacked(this.enemyNow, hero);
             showBattleStat(hero, this.enemyNow, nightGang);
-            if (nightGang.isGangZero() || hero.isHpZero()) break;
+            if (nightGang.isGangZero() || hero.isHpZero()) {
+                if(nightGang.isGangZero())
+                    System.out.println("조직원이 전부 쓰러졌습니다..");
+                if(hero.isHpZero())
+                    System.out.printf("%s 는 쓰러졌습니다..\n", hero.getName());
+
+                break;
+            }
         }
     }
     
