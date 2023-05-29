@@ -261,6 +261,9 @@ public class NightGang extends Gangster{
     }
 
     public void fight(Stage stage, Hero hero, Gangster g1, Gangster g2, Inventory inventory) { //세력확장
+        if (stage.getEnemyNow() instanceof Namsan && !(stage.getEnemyNow().isGangZero())) {
+            stage.getNamsan().finalBefore();
+        }
         stage.battle(hero, g1, g2, inventory);
     }
 

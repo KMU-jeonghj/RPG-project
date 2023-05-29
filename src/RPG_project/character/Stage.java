@@ -33,6 +33,7 @@ public class Stage {
     //수도권
     private GyeonggiSouth gyeonggiSouth = new GyeonggiSouth();
     private GyeonggiNorth gyeonggiNorth = new GyeonggiNorth();
+    private Namsan namsan = new Namsan();
 
 
     //적패거리 접근자들
@@ -82,6 +83,9 @@ public class Stage {
         return gyeonggiNorth;
     }
 
+    public Namsan getNamsan() {
+        return namsan;
+    }
     //--------------------------------------------------------------------
 
     private Enemy[] stageMokpo = {new Enemy("목포", 0, 0, 0),
@@ -91,7 +95,7 @@ public class Stage {
     private Enemy[] stageCountry = {new Enemy("지방권", 0, 0, 0),
     chungcheong, gangneung, gwanganri};
     private Enemy[] stageCapital = {new Enemy("수도권", 0,0, 0),
-    gyeonggiSouth, gyeonggiNorth};
+    gyeonggiSouth, gyeonggiNorth, namsan};
 
 
     private int ei = 1;
@@ -206,6 +210,9 @@ public class Stage {
             showBattleStat(hero, this.enemyNow, nightGang);
             if (this.enemyNow.isGangZero()) {
                 plusEi((NightGang) nightGang, hero); //다음 단계 패거리 포인팅
+                if (this.enemyNow instanceof Namsan) {
+                    this.namsan.finalAfter(); //남산 파이널 대사
+                }
                 break;
             }
 

@@ -48,5 +48,25 @@ public class Text {
         printText(text[i], speaker);
     }
 
+    public void manual() {
+        System.out.println("＿人人人人人人人人＿\r\n"
+                + "＞ 　게임 설명서   ＜\r\n"
+                + "￣Y^Y^Y^Y^Y^Y^Y￣\r\n"
+                + "");
+        System.out.println("깡패가 되어 전국을 통합하는 게임입니다.");
+        System.out.println("낮에는 부업 [영업사원, 정육점 사장, 연기파 배우] 중 하나를 선택하여 플레이 합니다");
+        input.nextLine();
+        System.out.println("밤에는 본업인 깡패로서 플레이 합니다.");
+        input.nextLine();
+        System.out.println("부업의 직업 특성에 따라 사용할 수 있는 스킬이 달라집니다.");
+        input.nextLine();
+        System.out.println("ex) 영업사원의 영업 능력이 높아지면 상대 패거리와 싸우지 않고 통합할 수 있습니다.");
+        input.nextLine();
+        System.out.println("[세력 확장]과 [잡담하기]를 통해 [신뢰도]를 높일 수 있습니다.");
+        System.out.println("[신뢰도]는 조직 내 계급을 올리는 유일한 수단입니다.");
+        System.out.println("싸움 과정에서 조직원 수가 줄어들지만, 종합백화점을 통해 회복할 수 있습니다.");
+        System.out.println("enter를 누르면 게임이 시작됩니다.");
+    }
+
 }
 

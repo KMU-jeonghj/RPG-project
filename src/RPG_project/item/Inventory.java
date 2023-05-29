@@ -29,9 +29,6 @@ public class Inventory {
         itemArr[no].gainCnt(1);//수량 증가
     }
 
-    public void sortList() { //아이템 번호로 정렬
-        Collections.sort(itemList, new ItemNoComparator());
-    }
 
 
 
@@ -144,9 +141,4 @@ public class Inventory {
 
 }
 
-class ItemNoComparator implements Comparator<Item> {
-    @Override
-    public int compare(Item i1, Item i2) { //아이템 번호를 비교하는 comparator
-        return Integer.compare(i1.getNo(), i2.getNo());
-    }
-}
+
