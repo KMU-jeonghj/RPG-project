@@ -129,10 +129,16 @@ public class Game {
             //밤 조직활동까지 마치고 탈출
 
             this.year++;
-            nightGang.recoverGang(); //조직원 회복
-            nightGang.initRecoveryWeight();//회복 가중치 초기화
+            recoverGangs();
         }
 
+    }
+
+    public void recoverGangs() {
+        nightGang.recoverGang(); //조직원 회복
+        nightGang.initRecoveryWeight();//회복 가중치 초기화
+
+        stage.getEnemyNow().recoverGang(); //적 패거리 회복
     }
 
     public void showNowStatus(Stage stage, Hero hero, NightGang gang, Inventory inventory) {

@@ -11,10 +11,10 @@ public class NightGang extends Gangster{
     Scanner input = new Scanner(System.in);
     Random rand = new Random();
     private double heroAttacked = 0.3;
-    private double recovereyWeight = 1.0; //조직원 회복률
+    //private double recovereyWeight = 1.0; //조직원 회복률
 
     //recovery -> fullGangCnt/5
-    private int recovery; //매턴마다 회복되는 조직원량
+    //private int recovery; //매턴마다 회복되는 조직원량
 
     public boolean isDefaultRecoveryWeight() {
         return (recovereyWeight == 1.0);
@@ -86,16 +86,14 @@ public class NightGang extends Gangster{
             this.rankPtr++;
         }
     }
-
+    @Override
     public void recoverGang() {
         int inc = (int)(this.recovereyWeight * this.recovery);
         if (this.gangCnt + inc > this.fullGangCnt) {
-            inc = (this.gangCnt + inc) - this.fullGangCnt;
+            inc -= ((this.gangCnt + inc) - this.fullGangCnt);
         }
         System.out.printf("조직원들이 회복했습니다. %d(+%d)/%d\n", this.gangCnt, inc, this.fullGangCnt);
-        this.gangCnt += inc;//가중치 곱해서 증가
-        if (this.gangCnt > this.fullGangCnt) this.gangCnt = this.fullGangCnt;
-
+        gainGangCnt(inc);//가중치 곱해서 증가
     }
     public void initRecovery() {
         this.recovery = this.fullGangCnt/4;
@@ -103,7 +101,7 @@ public class NightGang extends Gangster{
 
     public void gainFullGangCnt(int fullGangCnt) {
         super.gainFullGangCnt(fullGangCnt);
-        initRecovery();
+        initRecovery(); //회복량 업데이트
     }
     //----------------------------------------------------------
 
@@ -241,7 +239,13 @@ public class NightGang extends Gangster{
 
             String s = input.nextLine();
             switch (s) {
-                case "1" -> fight(stage, hero, g1, g2, inventory);
+                case "1" -> {
+                    if(stage.isDown(hero, (NightGang) g2)) {
+                        System.out.println("전투불능 상태여서 싸우지 못합니다");
+                        nightTurn--;
+                    }
+                    else fight(stage, hero, g1, g2, inventory);
+                }
                 case "2" -> takeMoney(hero);
                 case "3" -> chat(text);
                 case "4" -> {
@@ -256,8 +260,6 @@ public class NightGang extends Gangster{
             }
             nightTurn++;
         }
-
-
     }
 
     public void fight(Stage stage, Hero hero, Gangster g1, Gangster g2, Inventory inventory) { //세력확장
@@ -268,7 +270,7 @@ public class NightGang extends Gangster{
     }
 
     public void takeMoney(Hero hero) { //수금하기
-        int money = (int)(this.gangCnt * 1.5);
+        int money = (int)(this.gangCnt * 10);
         System.out.printf("수금 완료\n오늘은 치킨이닭!\n돈 : %d(+%d)\n", hero.getMoney(), money);
         hero.gainMoney(money);
     }
@@ -277,7 +279,6 @@ public class NightGang extends Gangster{
         text.printTextRand(text.getChatScript(), text.getSpeaker1());
         System.out.printf("신뢰도가 증가했다!\n 신뢰도: %d(+10)\n", this.credibility);
         gainCredibility(10); //신뢰도 증가
-
     }
 
     public void sleep(Hero hero) {

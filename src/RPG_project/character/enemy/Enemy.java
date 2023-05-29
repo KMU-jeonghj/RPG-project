@@ -20,6 +20,7 @@ public class Enemy extends Gangster {
         this.power = power;
         this.def = def;
         this.gangReward = (int) (0.8 * this.fullGangCnt); // gangCnt 보상 초기화
+        this.recovery = this.fullGangCnt/4;
     }
 
     public void setCredReward(int credReward) {
