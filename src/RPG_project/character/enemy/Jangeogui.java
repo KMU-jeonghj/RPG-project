@@ -28,12 +28,15 @@ public class Jangeogui extends Enemy implements NegoEnemy, BossEnemy{
             case 0:
                 System.out.println("[장어 꼬리로 후려치기 시전]");
                 damage = 20;
+                break;
             case 1:
                 System.out.println("[단단한 장어 가시로 찌르기 시전]");
                 damage = 25;
+                break;
             case 2:
                 System.out.println("[장어 먹고 튼튼해진 몸으로 기본 공격 시전]");
                 damage = 19;
+                break;
         }
         return damage;
     }

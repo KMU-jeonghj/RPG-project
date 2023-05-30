@@ -30,18 +30,23 @@ public class GyeonggiNorth extends Enemy implements NegoEnemy{
             case 0:
                 System.out.println("[고양시 고양이 패거리의 할퀴기 시전]");
                 damage = 90;
+                break;
             case 1:
                 System.out.println("[가평군 빠지 패거리의 수중 공격 시전]");
                 damage = 100;
+                break;
             case 2:
                 System.out.println("[의정부시 부대찌개 패거리의 햄 던지기 시전]");
                 damage = 115;
+                break;
             case 3:
                 System.out.println("[구리시 구리선으로 목 조르기 시전]");
                 damage = 125;
+                break;
             case 4:
                 System.out.println("[포천시 빨간버스 패거리의 질주 시전]");
                 damage = 130;
+                break;
 
         }
         return damage;

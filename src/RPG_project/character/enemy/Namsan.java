@@ -22,12 +22,15 @@ public class Namsan extends Enemy implements BossEnemy{
             case 0:
                 System.out.println("[남산타워의 자물쇠 뜯어 던지기 시전]");
                 damage = 180;
+                break;
             case 1:
                 System.out.println("[남산 케이블카 떨어뜨리기 시전]");
                 damage = 220;
+                break;
             case 2:
                 System.out.println("[남산 '필살기' 시전]");
                 damage = 170;
+                break;
         }
         return damage;
     }

@@ -21,19 +21,24 @@ public class GyeonggiSouth extends Enemy{
             case 0:
                 System.out.println("[용인시 에버랜드 패거리의 공격 시전]");
                 damage = 90;
+                break;
             case 1:
                 System.out.println("[의왕시 톨게이트 패거리의 불법점령으로 인한 교통 체증 시전]");
                 System.out.println("교통 체증으로 인한 스트레스는 hp를 감소시킵니다. ");
                 damage = 100;
+                break;
             case 2:
                 System.out.println("[수원 왕갈비 패거리의 달콤한 양념 공격 시전]");
                 damage = 115;
+                break;
             case 3:
                 System.out.println("[하남시 스타필드 패거리의 복합 공격 시전]");
                 damage = 125;
+                break;
             case 4:
                 System.out.println("[김포시 공항 패거리의 공중 공격 시전]");
                 damage = 130;
+                break;
             case 5:
                 System.out.println("[평택시 스키 패거리의 스키날로 베기 시전]");
         }

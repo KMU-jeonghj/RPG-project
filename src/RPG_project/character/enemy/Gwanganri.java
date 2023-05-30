@@ -19,12 +19,15 @@ public class Gwanganri extends Enemy implements BossEnemy{
             case 0:
                 System.out.println("[강력한 바다 갈매기와 협동 공격 시전]");
                 damage = 55;
+                break;
             case 1:
                 System.out.println("[열정으로 기선제압 시전]");
                 damage = 60;
+                break;
             case 2:
                 System.out.println("[국밥 뚝배기 던지기 시전]");
                 damage = 50;
+                break;
         }
         return damage;
     }

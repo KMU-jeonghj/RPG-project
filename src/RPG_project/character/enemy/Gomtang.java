@@ -21,12 +21,15 @@ public class Gomtang extends Enemy implements BossEnemy {
             case 0:
                 System.out.println("[단단한 뚝배기로 후려치기 시전]");
                 damage = 10;
+                break;
             case 1:
                 System.out.println("[뜨거운 국물 퍼붓기 시전]");
                 damage = 7;
+                break;
             case 2:
                 System.out.println("[애완 곰의 대리 공격 시전]");
                 damage = 15;
+                break;
         }
         return damage;
     }

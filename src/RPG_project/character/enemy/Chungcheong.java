@@ -19,12 +19,15 @@ public class Chungcheong extends Enemy{
             case 0:
                 System.out.println("[단단한 사과 던지기 시전]");
                 damage = 45;
+                break;
             case 1:
                 System.out.println("[과도 휘두르기 시전]");
                 damage = 50;
+                break;
             case 2:
                 System.out.println("[사과 먹고 건강해진 몸으로 기본 공격 시전]");
                 damage = 40;
+                break;
         }
         return damage;
     }

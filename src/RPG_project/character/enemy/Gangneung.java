@@ -25,12 +25,15 @@ public class Gangneung extends Enemy implements NegoEnemy{
             case 0:
                 System.out.println("[바닷물 대포 시전]");
                 damage = 47;
+                break;
             case 1:
                 System.out.println("[갓잡은 해산물 던지기 시전]");
                 damage = 52;
+                break;
             case 2:
                 System.out.println("[강릉 모래 흩뿌리기 시전]");
                 damage = 44;
+                break;
         }
         return damage;
     }

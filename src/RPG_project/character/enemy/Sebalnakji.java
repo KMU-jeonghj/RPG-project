@@ -20,9 +20,11 @@ public class Sebalnakji extends Enemy{
             case 0:
                 System.out.println("[연속 3회 날라차기 시전]");
                 damage = 7;
+                break;
             case 1:
                 System.out.println("[달라붙기 시전]");
                 damage = 5;
+                break;
             case 2:
                 System.out.println("[먹물 대포 시전]");
                 damage = 6;
