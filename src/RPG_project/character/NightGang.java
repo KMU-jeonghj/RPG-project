@@ -164,7 +164,7 @@ public class NightGang extends Gangster{
     public void rankUp(Hero hero) {
         plusRankPtr();
         initGangRank();
-        System.out.printf("%s는 %s로 승격했다!!\n", hero.getName(), this.getGangRank());
+        System.out.printf("%s은(는) %s로 승격했다!!\n", hero.getName(), this.getGangRank());
     }
 
     public int getSkill(Hero hero) {
@@ -195,7 +195,7 @@ public class NightGang extends Gangster{
         //일정확률로 hero Hp 차감 damage/fullGangCnt 비율만큼
         double randNum = rand.nextDouble();
         if (randNum < heroAttacked) {
-            System.out.printf("%s 가 공격받았다!\n", hero.getName());
+            System.out.printf("%s 이(가) 공격받았다!\n", hero.getName());
             //damage를 hp 감소 비율로 적용시켜야하므로 attack()을 코드채로 붙여넣음
             double heroDamage = ((double)damage/fullGangCnt) * 100;
             hero.loseHp((int)heroDamage);
@@ -311,7 +311,7 @@ public class NightGang extends Gangster{
     }
 
     public void sleep(Hero hero) {
-        System.out.printf("%s는 잠을 잤다!\nHP : %d(+50)  MP : %d(+40)\n",hero.getName(), hero.getHp(), hero.getJobNow().getMp());
+        System.out.printf("%s은(는) 잠을 잤다!\nHP : %d(+50)  MP : %d(+40)\n",hero.getName(), hero.getHp(), hero.getJobNow().getMp());
         hero.gainHp(50);
         hero.getJobNow().gainMp(40);
     } //잠자기

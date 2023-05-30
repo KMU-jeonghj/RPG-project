@@ -101,14 +101,14 @@ public class Event {
     public void eventIMF(Hero hero) {
         System.out.println("[1997년 국가의 경제가 급격히 기울기 시작했다]");
         input.nextLine();
-        System.out.println("[국가부도, " + hero.getName() + "은 이자를 걷을지 말지 고민중이다]");
+        System.out.println("[국가부도, " + hero.getName() + "은(는) 이자를 걷을지 말지 고민중이다]");
         System.out.print("1. 걷는다\t2. 걷지 않는다  ");
 
         choice97 = input.nextInt();
         input.nextLine();
 
         if(choice97 == 1){
-            System.out.println("["+ hero.getName() +"은 이자를 걷었다]");
+            System.out.println("["+ hero.getName() +"은(는) 이자를 걷었다]");
             input.nextLine();
             System.out.println("[그런 " +hero.getName()+ "를 손가락질하는 이들이 생겨났다]");
             input.nextLine();
@@ -237,7 +237,7 @@ public class Event {
                 + "˚ ˛ •˛• ˚｜田  田｜門｜ ˚");
         System.out.println("[2023년의 어느 밤]"); input.nextLine();
 
-        System.out.println("[거친 인생을 살아온 탓인지, 68세밖에 되지 않았지만 오늘 밤이 마지막이라는 사실을 " + hero.getName() +"은 직감한다]");
+        System.out.println("[거친 인생을 살아온 탓인지, 68세밖에 되지 않았지만 오늘 밤이 마지막이라는 사실을 " + hero.getName() +"은(는) 직감한다]");
         input.nextLine();
         if((choice13_1 == 3 || choice13_1 == 2) && choice13_2 == 0) {
             System.out.println("[" + hero.getName()+ ": 그때 두목을 선택했더라면... 깡패로서 조금 더 당당할 수 있었을까...]");

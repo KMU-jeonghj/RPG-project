@@ -91,7 +91,7 @@ public class Shop {
 
         if (isEnoughMoney(hero)) {
             Item i = items[picked];
-            System.out.printf("%s를 구매했습니다.\n돈 : %d(-%d)\n", i.getName(), hero.getMoney(), i.getPrice());
+            System.out.printf("%s을(를) 구매했습니다.\n돈 : %d(-%d)\n", i.getName(), hero.getMoney(), i.getPrice());
             hero.loseMoney(i.getPrice());//돈 차감
             return picked; //아이템 전달
         }
