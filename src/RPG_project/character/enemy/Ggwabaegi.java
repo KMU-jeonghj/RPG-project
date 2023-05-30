@@ -20,12 +20,15 @@ public class Ggwabaegi extends Enemy{
             case 0:
                 System.out.println("[단단한 꽈배기로 후려치기 시전]");
                 damage = 8;
+                break;
             case 1:
                 System.out.println("[꽈배기 반죽으로 목 조르기 시전]");
                 damage = 5;
+                break;
             case 2:
                 System.out.println("[설탕 뿌리기 시전]");
                 damage = 7;
+                break;
         }
         return damage;
     }

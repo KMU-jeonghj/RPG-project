@@ -20,12 +20,15 @@ public class Jeonjubibim extends Enemy{
             case 0:
                 System.out.println("[눈알에 고추장 뿌리기 시전]");
                 damage = 18;
+                break;
             case 1:
                 System.out.println("[강력하게 비비기 시전]");
                 damage = 22;
+                break;
             case 2:
                 System.out.println("[환상의 팀워크로 단체 공격 시전]");
                 damage = 17;
+                break;
         }
         return damage;
     }

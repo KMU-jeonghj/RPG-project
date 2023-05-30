@@ -21,12 +21,15 @@ public class Ggomak extends Enemy{
             case 0:
                 System.out.println("[꼬막 던지기 시전]");
                 damage = 17;
+                break;
             case 1:
                 System.out.println("[꼬막껍질로 꼬집기 시전]");
                 damage = 22;
+                break;
             case 2:
                 System.out.println("[모래 씹히게 하기 시전]");
                 damage = 18;
+                break;
         }
         return damage;
     }

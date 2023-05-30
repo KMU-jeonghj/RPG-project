@@ -228,7 +228,7 @@ public class Stage {
                 if(nightGang.isGangZero())
                     System.out.println("조직원이 전부 쓰러졌습니다..");
                 if(hero.isHpZero())
-                    System.out.printf("%s 는 쓰러졌습니다..\n", hero.getName());
+                    System.out.printf("%s 은(는) 쓰러졌습니다..\n", hero.getName());
 
                 break;
             }
@@ -286,9 +286,9 @@ public class Stage {
     }
 
     public void showBattleStat(Hero hero, Gangster enemy, Gangster nightGang) {
-        System.out.println("\n---------------------------------------------------\n");
-        System.out.printf("\t\t\t%s | GANG[%d / %d]\n",enemy.getName(), enemy.getGangCnt(), enemy.getFullGangCnt());
-        System.out.println("\n---------------------------------------------------\n");
+        System.out.println("\n-----------------------------------------------------------------\n");
+        System.out.printf("\t\t\t     %s | GANG[%d / %d]\n",enemy.getName(), enemy.getGangCnt(), enemy.getFullGangCnt()); //space 5번
+        System.out.println("\n-----------------------------------------------------------------\n");
         System.out.printf("%s | GANG[%d / %d]\t%s | HP [%d / %d] MP [%d / %d]\n\n",
                 nightGang.getName(), nightGang.getGangCnt(), nightGang.getFullGangCnt(),
                 hero.getName(), hero.getHp(), hero.getFullHp(),hero.getJobNow().getMp(), hero.getJobNow().getFullMp());
